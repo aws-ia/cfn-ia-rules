@@ -1,22 +1,40 @@
--   id: qs-cfn-lint
-    name: AWS Quick Start Linter
-    entry: cfn-lint
-    language: python
-    files: \.(json|yaml|yml)$
--   id: qs-cfn-lint-wrapped
-    name: AWS Quick Start Linter
-    entry: wrapped-cfn-lint
-    language: python
-    files: \.(json|yaml|yml)$
--   id: files-are-cfn
-    name: Validates files are CFN
-    entry: files-are-cfn
-    language: python
-    types_or: [json, yaml]
--   id: files-are-not-cfn
-    name: Validates files are not CFN
-    entry: files-are-cfn
-    language: python
-    types_or: [json, yaml]
-    args:
-      - '-i'
+- id: qs-cfn-lint
+  name: AWS Quick Start Linter
+  entry: cfn-lint
+  language: python
+  files: \.(json|yaml|yml)$
+
+- id: qs-cfn-lint-wrapped
+  name: AWS Quick Start Linter
+  entry: wrapped-cfn-lint
+  language: python
+  files: \.(json|yaml|yml)$
+
+- id: files-are-cfn
+  name: Validates files are CFN
+  entry: files-are-cfn
+  language: python
+  types_or: [json, yaml]
+
+- id: files-are-not-cfn
+  name: Validates files are not CFN
+  entry: files-are-cfn
+  language: python
+  types_or: [json, yaml]
+  args:
+    - '-i'
+
+- id: core-rules
+  name: AWS Quick Start Linter
+  entry: wrapped4-cfn-lint
+  language: python
+  files: \.(json|yaml|yml)$
+
+
+- id: prescriptive-rules
+  name: AWS Quick Start Linter
+  entry: wrapped4-cfn-lint
+  language: python
+  files: \.(json|yaml|yml)$
+  args:
+    - '--prescriptive'

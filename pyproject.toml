@@ -4,7 +4,7 @@ line-length = 79
 requires = ["poetry"]
 build-backend = "poetry.masonry.api"
 [tool.poetry]
-name = "qs_cfn_lint_rules"
+name = "test_ia_lint_rules"
 version = "0.0.4"
 description = "checks CloudFormation templates against AWS Quick Start contributors guide rules"
 license = "Apache License 2.0"
@@ -21,5 +21,6 @@ policyuniverse = "<2,>=1.3.5"
 pyspellchecker = "<0.5.0,>=0.4.0"
 
 [tool.poetry.scripts]
-wrapped-cfn-lint = 'qs_cfn_lint_rules.cfnlint_exit_code_wrapper:main'
-files-are-cfn = 'qs_cfn_lint_rules.files_are_cfn:main'
+wrapped-cfn-lint = 'test_ia_lint_rules.cfnlint_exit_code_wrapper:main'
+wrapped-cfn-lint-prescriptive = 'test_ia_lint_rules.cfnlint_exit_code_wrapper:prescriptive'
+files-are-cfn = 'test_ia_lint_rules.files_are_cfn:main'
