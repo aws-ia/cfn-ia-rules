@@ -19,7 +19,7 @@
 import re
 import six
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
-from ..common import search_resources_for_property_value_violations as srfpvv
+from ...common import search_resources_for_property_value_violations as srfpvv
 
 
 LINT_ERROR_MESSAGE = "AWS::EC2::Volume must have EBS Volume Encryption enabled"
