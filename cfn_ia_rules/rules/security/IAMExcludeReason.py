@@ -15,6 +15,7 @@
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
+
 import json
 from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
@@ -28,12 +29,8 @@ class IAMExcludeReason(CloudFormationLintRule):
 
     id = "E-IAM-IGNORE-JUSTIFICATION"
     shortdesc = "excluding IAM best practices requires justification"
-    description = (
-        "when excluding an IAM policy rule, you must provide a justification"
-    )
-    source_url = (
-        "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
-    )
+    description = "when excluding an IAM policy rule, you must provide a justification"
+    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
     tags = ["iam"]
     SEARCH_PROPS = ["cfn-lint"]
 
@@ -50,26 +47,15 @@ class IAMExcludeReason(CloudFormationLintRule):
             if "EIAMPolicyResourceWildcard" in config["ignore_checks"]:
                 if "ignore_reasons" not in config:
                     violation_matches.append(RuleMatch(tm, LINT_ERROR_MESSAGE))
-                elif (
-                    "EIAMPolicyResourceWildcard"
-                    not in config["ignore_reasons"]
-                ):
+                elif "EIAMPolicyResourceWildcard" not in config["ignore_reasons"]:
                     violation_matches.append(RuleMatch(tm, LINT_ERROR_MESSAGE))
-                elif (
-                    len(config["ignore_reasons"]["EIAMPolicyResourceWildcard"])
-                    < 1
-                ):
+                elif len(config["ignore_reasons"]["EIAMPolicyResourceWildcard"]) < 1:
                     violation_matches.append(RuleMatch(tm, LINT_ERROR_MESSAGE))
             if "EIAMPolicyActionWildcard" in config["ignore_checks"]:
                 if "ignore_reasons" not in config:
                     violation_matches.append(RuleMatch(tm, LINT_ERROR_MESSAGE))
-                elif (
-                    "EIAMPolicyActionWildcard" not in config["ignore_reasons"]
-                ):
+                elif "EIAMPolicyActionWildcard" not in config["ignore_reasons"]:
                     violation_matches.append(RuleMatch(tm, LINT_ERROR_MESSAGE))
-                elif (
-                    len(config["ignore_reasons"]["EIAMPolicyActionWildcard"])
-                    < 1
-                ):
+                elif len(config["ignore_reasons"]["EIAMPolicyActionWildcard"]) < 1:
                     violation_matches.append(RuleMatch(tm, LINT_ERROR_MESSAGE))
         return violation_matches

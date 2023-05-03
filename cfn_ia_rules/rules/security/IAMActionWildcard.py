@@ -15,6 +15,7 @@
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
+
 import json
 from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
@@ -92,9 +93,7 @@ class IAMActionWildcard(CloudFormationLintRule):
     id = "EIAMPolicyActionWildcard"
     shortdesc = "* on Action property is a bad idea"
     description = "wildcard should not be used for Action in IAM policies"
-    source_url = (
-        "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
-    )
+    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
     tags = ["iam"]
     SEARCH_PROPS = ["Action"]
 
@@ -104,10 +103,7 @@ class IAMActionWildcard(CloudFormationLintRule):
             if not hasattr(match, "expanded_actions"):
                 continue
             _v = deep_get(cfn.template, match.path)
-            if (
-                hasattr(match, "expanded_on_newline")
-                and match.expanded_on_newline
-            ):
+            if hasattr(match, "expanded_on_newline") and match.expanded_on_newline:
                 subs = (
                     match.path,
                     _v,
@@ -131,17 +127,13 @@ class IAMActionWildcard(CloudFormationLintRule):
             if get_effect(cfn.template, tm).lower() == "deny":
                 continue
             if tm[-1] == "*" or ("*" in tm[-1] and isinstance(tm[-1], list)):
-                violation_matches.append(
-                    RuleMatch(tm[:-1], LINT_ERROR_MESSAGE)
-                )
+                violation_matches.append(RuleMatch(tm[:-1], LINT_ERROR_MESSAGE))
             else:
                 wild_actions = is_wild(tm[-1])
                 for wild_action in wild_actions:
                     expanded_actions = {
                         CAMEL_CASE.get(k, k)
-                        for k in get_actions_from_statement(
-                            {"Action": [wild_action]}
-                        )
+                        for k in get_actions_from_statement({"Action": [wild_action]})
                     }
                     msg = f"{LINT_ERROR_MESSAGE} matching actions for {wild_action} are: {json.dumps(list(expanded_actions))}"
                     if isinstance(tm[-1], list):

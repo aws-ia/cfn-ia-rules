@@ -14,6 +14,8 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+
+
 import re
 import six
 import json
@@ -39,9 +41,7 @@ class IAMResourceWildcard(CloudFormationLintRule):
     id = "EIAMAccountIDInPrincipal"
     shortdesc = "Hard-coded account IDs are unacceptable."
     description = "Hard-coded account IDs are unacceptable."
-    source_url = (
-        "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
-    )
+    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
     tags = ["iam"]
     SEARCH_PROPS = ["Principal"]
 
@@ -52,11 +52,7 @@ class IAMResourceWildcard(CloudFormationLintRule):
         for prop in self.SEARCH_PROPS:
             term_matches += cfn.search_deep_keys(prop)
         for tm in term_matches:
-            violating_principal = determine_account_id_in_principal(
-                tm[:-1], tm[-1]
-            )
+            violating_principal = determine_account_id_in_principal(tm[:-1], tm[-1])
             if violating_principal:
-                violation_matches.append(
-                    RuleMatch(tm[:-1], LINT_ERROR_MESSAGE)
-                )
+                violation_matches.append(RuleMatch(tm[:-1], LINT_ERROR_MESSAGE))
         return violation_matches

@@ -26,16 +26,13 @@ LINT_ERROR_MESSAGE = "AWS::EC2::Volume must have EBS Volume Encryption enabled"
 
 
 class EBSVolumeEncryption(CloudFormationLintRule):
+    id = "EBSVolumeEncryption"
+    shortdesc = "EBS volume missing enryption"
+    description = "EBS volume should have server-side encryption enabled"
+    source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
+    tags = ["EBS", "encryption"]
 
-    id = 'EBSVolumeEncryption'
-    shortdesc = 'EBS volume missing enryption'
-    description = 'EBS volume should have server-side encryption enabled'
-    source_url = 'https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules'
-    tags = ['EBS', 'encryption']
-
-    CFN_NAG_RULES = [
-        'F1'
-    ]
+    CFN_NAG_RULES = ["F1"]
 
     def match(self, cfn):
         """Basic Matching"""

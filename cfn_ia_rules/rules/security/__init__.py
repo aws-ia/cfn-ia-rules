@@ -7,7 +7,7 @@ from .IAMNotAction import IAMNotAction
 from .IAMPartition import IAMPartition
 from .IAMResourceWildcard import IAMResourceWildcard
 from .LambdaRuntimeEOL import DeprecatedRuntimeEolWarning
-from .NoDefaultAndEcho import(
+from .NoDefaultAndEcho import (
     RDSDBInstanceNoEcho,
     SimpleADPasswordNoEcho,
     RDSDBInstanceNoEcho,
@@ -36,7 +36,7 @@ from .NoDefaultAndEcho import(
 from .PrincipalWildcard import IAMPrincipalWildcard
 from .ProhibitedResourceProperties import WAFV2NoDefaultAllow
 from .ProhibitedResources import NoSimpleDBDomain
-from .RequiredResourceProperties import(
+from .RequiredResourceProperties import (
     CFNNAGF25,
     CFNNAGF28,
     CFNNAGF29p1,

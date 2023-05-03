@@ -26,20 +26,17 @@ LINT_ERROR_MESSAGE = "AWS::AWS::EFS::FileSystem must have Encryption enabled"
 
 
 class EFSFilesystemEncryptionEnabled(CloudFormationLintRule):
+    id = "EFSFilesystemEncryptionEnabled"
+    shortdesc = "EFS volume missing encryption"
+    description = "EFS volume should have server-side encryption enabled"
+    source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
+    tags = ["EFS", "encryption"]
 
-    id = 'EFSFilesystemEncryptionEnabled'
-    shortdesc = 'EFS volume missing encryption'
-    description = 'EFS volume should have server-side encryption enabled'
-    source_url = 'https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules'
-    tags = ['EFS', 'encryption']
+    CFN_NAG_RULES = ["F32"]
 
-    CFN_NAG_RULES = [
-        'F32'
-    ]
     def match(self, cfn):
         """Basic Matching"""
         matches = []
         for ln in srfpvv(cfn, "AWS::EFS::FileSystem", "Encrypted", True):
             matches.append(RuleMatch(ln, LINT_ERROR_MESSAGE))
         return matches
-
