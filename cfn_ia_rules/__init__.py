@@ -1,0 +1,3 @@
+"""
+Mandatory CFN Lint Rules
+"""
