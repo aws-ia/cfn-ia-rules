@@ -17,7 +17,7 @@
 
 
 import os
-import cfnlint
+from cfnlint import decode
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from .StackHelper import template_url_to_path
 
@@ -55,7 +55,7 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
             template_file = template_file[0]
         elif isinstance(template_file, list):
             raise ValueError("expecting single template in a list %s" % template_file)
-        template_parsed = cfnlint.decode.cfn_yaml.load(template_file)
+        template_parsed = decode.cfn_yaml.load(template_file)
 
         child_parameters = template_parsed.get("Parameters")
         if child_parameters is None:

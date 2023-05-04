@@ -17,7 +17,7 @@
 
 
 import os
-import cfnlint
+from cfnlint import decode
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from .StackHelper import template_url_to_path
 
@@ -54,7 +54,7 @@ class DefaultParameter(CloudFormationLintRule):
         # template_parsed = template_parser.my_load_yaml_function(
         #     template_file=template_file
         # )
-        template_parsed = cfnlint.decode.cfn_yaml.load(template_file)
+        template_parsed = decode.cfn_yaml.load(template_file)
 
         # Iterate over Child Stack parameters and
         # make sure we have all the ones that are not Defaults

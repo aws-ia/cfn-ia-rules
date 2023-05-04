@@ -17,7 +17,7 @@
 
 
 import os
-import cfnlint
+from cfnlint import decode
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from .StackHelper import template_url_to_path
 
@@ -60,7 +60,7 @@ class ParameterNotInChild(CloudFormationLintRule):
         # template_parsed = template_parser.my_load_yaml_function(
         #     template_file=template_file
         # )
-        template_parsed = cfnlint.decode.cfn_yaml.load(template_file)
+        template_parsed = decode.cfn_yaml.load(template_file)
 
         # Iterate over template resource parameters and check they exist
         # In the child template
