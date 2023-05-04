@@ -40,6 +40,7 @@ class IAMPrincipalWildcard(CloudFormationLintRule):
 
     id = "EPolicyWildcardPrincipal"
     shortdesc = "* on Principal property is a bad idea"
+    description = "Wildcards should not be used for Principals in IAM policies."
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_permissions_least_privileges.html"
     tags = ["iam"]
     SEARCH_PROPS = ["Principal"]
