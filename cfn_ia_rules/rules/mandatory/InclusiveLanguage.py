@@ -73,26 +73,3 @@ class InclusiveLanguage(CloudFormationLintRule):
 
         recurse_template(cfn.template)
         return matches
-
-        if self.id in cfn.template.get("Metadata", {}).get("QSLint", {}).get(
-            "Exclusions", []
-        ):
-            return matches
-        if "Metadata" in cfn.template.keys():
-            if "AWS::CloudFormation::Interface" in cfn.template["Metadata"].keys():
-                if (
-                    "ParameterGroups"
-                    in cfn.template["Metadata"]["AWS::CloudFormation::Interface"].keys()
-                ):
-                    for x in cfn.template["Metadata"]["AWS::CloudFormation::Interface"][
-                        "ParameterGroups"
-                    ]:
-                        labels += x["Parameters"]
-
-        if "Parameters" not in cfn.template.keys():
-            return matches
-        else:
-            for x in cfn.template["Parameters"]:
-                if str(x) not in labels:
-                    matches.append(RuleMatch(["Parameters", x], message.format(x)))
-        return matches
