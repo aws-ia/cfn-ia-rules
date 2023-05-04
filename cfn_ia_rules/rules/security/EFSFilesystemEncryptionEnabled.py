@@ -24,6 +24,8 @@ LINT_ERROR_MESSAGE = "AWS::AWS::EFS::FileSystem must have Encryption enabled"
 
 
 class EFSFilesystemEncryptionEnabled(CloudFormationLintRule):
+    """Check for EFS file systems without encryption at rest."""
+
     id = "EFSFilesystemEncryptionEnabled"
     shortdesc = "EFS volume missing encryption"
     description = "EFS volume should have server-side encryption enabled"

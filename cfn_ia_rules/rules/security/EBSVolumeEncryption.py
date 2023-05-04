@@ -24,6 +24,8 @@ LINT_ERROR_MESSAGE = "AWS::EC2::Volume must have EBS Volume Encryption enabled"
 
 
 class EBSVolumeEncryption(CloudFormationLintRule):
+    """Check for EBS volumes without encryption at rest."""
+
     id = "EBSVolumeEncryption"
     shortdesc = "EBS volume missing enryption"
     description = "EBS volume should have server-side encryption enabled"
