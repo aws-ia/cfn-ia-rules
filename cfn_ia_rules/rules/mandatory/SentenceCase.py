@@ -46,7 +46,7 @@ class SentenceCase(CloudFormationLintRule):
     @staticmethod
     def get_custom_dict(filepath=custom_dict_path):
         with open(filepath, "r") as f:
-            wordlist = [l.replace("\n", "") for l in f.readlines()]
+            wordlist = [line.replace("\n", "") for line in f.readlines()]
         return set(wordlist)
 
     @staticmethod

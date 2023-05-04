@@ -17,9 +17,7 @@
 
 
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
-from cfnlint.rules.metadata.InterfaceParameterExists import (
-    InterfaceParameterExists as I,
-)
+from cfnlint.rules.metadata.InterfaceParameterExists import InterfaceParameterExists
 
 
 class ParamsInMetadataExist(CloudFormationLintRule):
@@ -34,6 +32,6 @@ class ParamsInMetadataExist(CloudFormationLintRule):
     def match(self, cfn):
         """Basic Matching"""
         converted_matches = []
-        for m in I.match(self, cfn):
+        for m in InterfaceParameterExists.match(self, cfn):
             converted_matches.append(RuleMatch(m.path, self.shortdesc))
         return converted_matches
