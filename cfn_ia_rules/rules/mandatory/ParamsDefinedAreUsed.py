@@ -17,8 +17,7 @@
 
 
 import re
-from cfnlint.rules import CloudFormationLintRule
-from cfnlint.rules import RuleMatch
+from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from cfnlint.rules.parameters.Used import Used
 
 

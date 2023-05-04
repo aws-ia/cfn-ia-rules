@@ -16,8 +16,7 @@
 """
 
 
-from cfnlint.rules import CloudFormationLintRule
-from cfnlint.rules import RuleMatch
+from cfnlint.rules import CloudFormationLintRule, RuleMatch
 
 deny_list = [
     ["abort", '"stop"'],
