@@ -14,6 +14,8 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+
+
 from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
 
@@ -40,7 +42,5 @@ class Descriptions(CloudFormationLintRule):
         else:
             for x in cfn.template["Parameters"]:
                 if "Description" not in cfn.template["Parameters"][x].keys():
-                    matches.append(
-                        RuleMatch(["Parameters", x], message.format(x))
-                    )
+                    matches.append(RuleMatch(["Parameters", x], message.format(x)))
         return matches

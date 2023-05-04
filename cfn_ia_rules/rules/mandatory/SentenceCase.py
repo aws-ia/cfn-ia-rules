@@ -14,6 +14,8 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+
+
 from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
 from spellchecker import SpellChecker
@@ -54,9 +56,13 @@ class SentenceCase(CloudFormationLintRule):
         title_errors = set([])
         # [OPTIONAL] prefix should not be considered as part of the string, as it is stripped from
         # the deployment guide
-        description = re.sub(r"^[\[\(]OPTIONAL[\]\)] ", "", description, flags=re.IGNORECASE)
+        description = re.sub(
+            r"^[\[\(]OPTIONAL[\]\)] ", "", description, flags=re.IGNORECASE
+        )
         # Remove example resource IDs
-        description = re.sub(r"\b[a-z]+-(?:[0-9a-f]{8}|[0-9a-f]{17})\b", "", description)
+        description = re.sub(
+            r"\b[a-z]+-(?:[0-9a-f]{8}|[0-9a-f]{17})\b", "", description
+        )
         # Remove example ARNs
         description = re.sub(r"\barn:\S+\b", "", description)
         # Remove items from the custom dictionary or the sentence case exclusions from the string
@@ -68,7 +74,9 @@ class SentenceCase(CloudFormationLintRule):
                 # if sentence starts with a proper noun then we don't need to check for sentence case
                 if sentence.startswith(pn):
                     word_no += 1
-                sentence = re.sub(r"\b" + re.escape(pn) + r"\b", "", sentence, flags=re.IGNORECASE)
+                sentence = re.sub(
+                    r"\b" + re.escape(pn) + r"\b", "", sentence, flags=re.IGNORECASE
+                )
             if len(sentence.strip()) > 1:
                 # Check that first letter of first word is UPPER
                 if sentence[0].upper() != sentence[0]:
@@ -111,7 +119,9 @@ class SentenceCase(CloudFormationLintRule):
             return matches
         else:
             custom_dict = self.get_custom_dict()
-            sentence_case_exclude = cfn.template.get("Metadata", {}).get("SentenceCaseExclude", [])
+            sentence_case_exclude = cfn.template.get("Metadata", {}).get(
+                "SentenceCaseExclude", []
+            )
             spell = SpellChecker()
             if "Metadata" in cfn.template.keys():
                 if "LintSpellExclude" in cfn.template["Metadata"].keys():
@@ -129,23 +139,20 @@ class SentenceCase(CloudFormationLintRule):
                     )
                     description = strip_urls(description)
                     spell_errors, title_errors = self.get_errors(
-                        description, spell, custom_dict, sentence_case_exclude,
+                        description,
+                        spell,
+                        custom_dict,
+                        sentence_case_exclude,
                     )
                     if stop_error:
-                        matches.append(
-                            RuleMatch(location, stop_message.format(x))
-                        )
+                        matches.append(RuleMatch(location, stop_message.format(x)))
                     if title_errors:
                         matches.append(
-                            RuleMatch(
-                                location, title_message.format(x, title_errors)
-                            )
+                            RuleMatch(location, title_message.format(x, title_errors))
                         )
                     if spell_errors:
                         matches.append(
-                            RuleMatch(
-                                location, spell_message.format(x, spell_errors)
-                            )
+                            RuleMatch(location, spell_message.format(x, spell_errors))
                         )
             if "Metadata" not in cfn.template.keys():
                 matches.append(
@@ -155,8 +162,7 @@ class SentenceCase(CloudFormationLintRule):
                     )
                 )
             elif (
-                "AWS::CloudFormation::Interface"
-                not in cfn.template["Metadata"].keys()
+                "AWS::CloudFormation::Interface" not in cfn.template["Metadata"].keys()
             ):
                 matches.append(
                     RuleMatch(
@@ -166,9 +172,7 @@ class SentenceCase(CloudFormationLintRule):
                 )
             elif (
                 "ParameterGroups"
-                not in cfn.template["Metadata"][
-                    "AWS::CloudFormation::Interface"
-                ].keys()
+                not in cfn.template["Metadata"]["AWS::CloudFormation::Interface"].keys()
             ):
                 matches.append(
                     RuleMatch(
@@ -178,9 +182,7 @@ class SentenceCase(CloudFormationLintRule):
                 )
             elif (
                 "ParameterLabels"
-                not in cfn.template["Metadata"][
-                    "AWS::CloudFormation::Interface"
-                ].keys()
+                not in cfn.template["Metadata"]["AWS::CloudFormation::Interface"].keys()
             ):
                 matches.append(
                     RuleMatch(
@@ -190,13 +192,15 @@ class SentenceCase(CloudFormationLintRule):
                 )
             else:
                 count = 0
-                for x in cfn.template["Metadata"][
-                    "AWS::CloudFormation::Interface"
-                ]["ParameterGroups"]:
+                for x in cfn.template["Metadata"]["AWS::CloudFormation::Interface"][
+                    "ParameterGroups"
+                ]:
                     title_message = (
                         'Parameter Group name "{0}" is not sentence case: {1}'
                     )
-                    spell_message = 'Parameter Group name "{0}" contains spelling error(s): {1}'
+                    spell_message = (
+                        'Parameter Group name "{0}" contains spelling error(s): {1}'
+                    )
                     if "Label" not in x.keys():
                         matches.append(
                             RuleMatch(
@@ -232,7 +236,10 @@ class SentenceCase(CloudFormationLintRule):
                         ]
                         description = x["Label"]["default"]
                         spell_errors, title_errors = self.get_errors(
-                            description, spell, custom_dict, sentence_case_exclude,
+                            description,
+                            spell,
+                            custom_dict,
+                            sentence_case_exclude,
                         )
                         if title_errors:
                             matches.append(
@@ -253,13 +260,11 @@ class SentenceCase(CloudFormationLintRule):
                                 )
                             )
                     count += 1
-                for x in cfn.template["Metadata"][
-                    "AWS::CloudFormation::Interface"
-                ]["ParameterLabels"]:
+                for x in cfn.template["Metadata"]["AWS::CloudFormation::Interface"][
+                    "ParameterLabels"
+                ]:
                     title_message = "Parameter Label is not sentence case: {0}"
-                    spell_message = (
-                        "Parameter Label contains spelling error(s): {0}"
-                    )
+                    spell_message = "Parameter Label contains spelling error(s): {0}"
                     if (
                         "default"
                         not in cfn.template["Metadata"][
@@ -289,7 +294,10 @@ class SentenceCase(CloudFormationLintRule):
                             "AWS::CloudFormation::Interface"
                         ]["ParameterLabels"][x]["default"]
                         spell_errors, title_errors = self.get_errors(
-                            description, spell, custom_dict, sentence_case_exclude,
+                            description,
+                            spell,
+                            custom_dict,
+                            sentence_case_exclude,
                         )
                         if title_errors:
                             matches.append(

@@ -14,6 +14,8 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+
+
 import re
 from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
@@ -26,9 +28,7 @@ class ParamsDefinedAreUsed(CloudFormationLintRule):
     id = "E9010"
     shortdesc = "Parameters defined in the template must be used."
     description = "Making sure parameters are used."
-    source_url = (
-        "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
-    )
+    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
     tags = ["params"]
 
     def determine_changes(self, cfn):
