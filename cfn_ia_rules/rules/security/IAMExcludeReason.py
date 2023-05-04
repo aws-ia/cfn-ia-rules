@@ -26,7 +26,7 @@ LINT_ERROR_MESSAGE = "IAM policy exclusions must provide exclusion reason eg.: {
 class IAMExcludeReason(CloudFormationLintRule):
     """Check that IAM exclusions have a reason specified."""
 
-    id = "E-IAM-IGNORE-JUSTIFICATION"
+    id = "EIAMIgnoreJustification"
     shortdesc = "excluding IAM best practices requires justification"
     description = "when excluding an IAM policy rule, you must provide a justification"
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_data_classification_define_protection.html"
