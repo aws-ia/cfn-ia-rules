@@ -20,12 +20,12 @@ from cfnlint.rules import CloudFormationLintRule, RuleMatch
 
 
 class LabelsRule(CloudFormationLintRule):
-    """Check Parameter Labels Exist"""
+    """Check for parameters without labels."""
 
     id = "W9002"
     shortdesc = "Each parameter should have a label"
-    description = "AWS::CloudFormation::Interface should contain ParameterLabels for each parameter"
-    source_url = "https://github.com/qs_cfn_lint_rules/qs_cfn_lint_rules"
+    description = "AWS::CloudFormation::Interface should contain ParameterLabels for each parameter."
+    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-interface.html"
     tags = ["parameters"]
 
     def match(self, cfn):
