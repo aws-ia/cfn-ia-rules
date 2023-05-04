@@ -91,7 +91,7 @@ class IAMResourceWildcard(CloudFormationLintRule):
     id = "EIAMPolicyWildcardResource"
     shortdesc = "* on Resource property is a bad idea"
     description = (
-        "Making sure wildcard resources are only used where no other option exists"
+        "Making sure wildcard resources are only used where no other option exists."
     )
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_permissions_least_privileges.html"
     tags = ["iam"]

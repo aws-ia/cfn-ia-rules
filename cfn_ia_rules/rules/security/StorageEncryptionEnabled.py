@@ -28,7 +28,7 @@ class StorageEncryptionEnabled(CloudFormationLintRule):
 
     id = "ERDSStorageEncryptionEnabled"
     shortdesc = "AWS::RDS::DBCluster should have StorageEncryption enabled"
-    description = "AWS::RDS::DBCluster should have StorageEncryption enabled"
+    description = "RDS clusters should have server-side encryption enabled."
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_protect_data_rest_encrypt.html"
     tags = ["rds", "encryption"]
 

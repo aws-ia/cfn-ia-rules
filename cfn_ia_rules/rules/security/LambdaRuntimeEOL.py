@@ -14,9 +14,7 @@ class DeprecatedRuntimeEolWarning(DeprecatedRuntime):
 
     id = "W9932"
     shortdesc = "Check if EOL Lambda Function Runtimes are used"
-    description = (
-        "Check if an EOL Lambda Runtime is specified and give a warning if used. "
-    )
+    description = "Check if an end of life Lambda Runtime is specified and give a warning if used."
     source_url = "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy"
     tags = ["resources", "lambda", "runtime"]
 

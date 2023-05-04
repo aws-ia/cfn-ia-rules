@@ -28,7 +28,7 @@ class IAMExcludeReason(CloudFormationLintRule):
 
     id = "EIAMIgnoreJustification"
     shortdesc = "excluding IAM best practices requires justification"
-    description = "when excluding an IAM policy rule, you must provide a justification"
+    description = "When excluding an IAM policy rule, you must provide a justification."
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_data_classification_define_protection.html"
     tags = ["iam"]
     SEARCH_PROPS = ["cfn-lint"]

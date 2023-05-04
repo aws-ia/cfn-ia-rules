@@ -20,7 +20,7 @@ from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
 from ...common import search_resources_for_property_value_violations as srfpvv
 
-LINT_ERROR_MESSAGE = "AWS::AWS::EFS::FileSystem must have Encryption enabled"
+LINT_ERROR_MESSAGE = "AWS::AWS::EFS::FileSystem must have Encryption enabled."
 
 
 class EFSFilesystemEncryptionEnabled(CloudFormationLintRule):
@@ -28,7 +28,7 @@ class EFSFilesystemEncryptionEnabled(CloudFormationLintRule):
 
     id = "EFSFilesystemEncryptionEnabled"
     shortdesc = "EFS volume missing encryption"
-    description = "EFS volume should have server-side encryption enabled"
+    description = "EFS volumes should have server-side encryption enabled."
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_protect_data_rest_encrypt.html"
     tags = ["efs", "encryption"]
 

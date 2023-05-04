@@ -35,7 +35,7 @@ class IAMNotAction(CloudFormationLintRule):
     id = "EIAMPolicyActionNotAction"
     shortdesc = "Combining Action and NotAction is a bad idea."
     description = (
-        "Making sure Action and NotAction are not used in an IAM statement together"
+        "Making sure Action and NotAction are not used in an IAM statement together."
     )
     source_url = "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notaction.html"
     tags = ["iam"]

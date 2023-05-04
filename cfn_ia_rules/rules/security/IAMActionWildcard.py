@@ -31,7 +31,7 @@ from policyuniverse import service_data
 
 logger.setLevel(orig_level)
 
-LINT_ERROR_MESSAGE = "IAM policy should not allow * Actions; List each required action explicitly instead"
+LINT_ERROR_MESSAGE = "IAM policy should not allow * Actions; List each required action explicitly instead."
 DONT_EXPAND = ["s3:Get*", "s3:Put*", "s3:List*"]
 CAMEL_CASE = {}
 
@@ -92,7 +92,7 @@ class IAMActionWildcard(CloudFormationLintRule):
 
     id = "EIAMPolicyActionWildcard"
     shortdesc = "* on Action property is a bad idea"
-    description = "wildcard should not be used for Action in IAM policies"
+    description = "Wildcards should not be used for Actions in IAM policies."
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_permissions_least_privileges.html"
     tags = ["iam"]
     SEARCH_PROPS = ["Action"]

@@ -20,7 +20,7 @@ from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from ...common import search_resources_for_property_value_violations as srfpvv
 
 
-LINT_ERROR_MESSAGE = "AWS::EC2::Volume must have EBS Volume Encryption enabled"
+LINT_ERROR_MESSAGE = "AWS::EC2::Volume must have EBS Volume Encryption enabled."
 
 
 class EBSVolumeEncryption(CloudFormationLintRule):
@@ -28,7 +28,7 @@ class EBSVolumeEncryption(CloudFormationLintRule):
 
     id = "EBSVolumeEncryption"
     shortdesc = "EBS volume missing enryption"
-    description = "EBS volume should have server-side encryption enabled"
+    description = "EBS volumes should have server-side encryption enabled."
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_protect_data_rest_encrypt.html"
     tags = ["ebs", "encryption"]
 

@@ -21,7 +21,7 @@ from cfnlint.rules import RuleMatch
 from ...common import deep_get
 
 LINT_ERROR_MESSAGE = (
-    "EIAM* rules must not be excluded globally. only at the resource level"
+    "EIAM* rules must not be excluded globally- only at the resource level."
 )
 
 
@@ -31,7 +31,7 @@ class ValidateRuleExclusions(CloudFormationLintRule):
     id = "EValidateIAMRuleExclusions"
     shortdesc = "* on Resource property is a bad idea"
     description = (
-        "Making sure wildcard resources are only used where no other option exists"
+        "Making sure wildcard resources are only used where no other option exists."
     )
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_permissions_least_privileges.html"
     tags = ["iam"]
