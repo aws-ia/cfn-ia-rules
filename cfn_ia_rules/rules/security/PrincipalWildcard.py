@@ -36,7 +36,7 @@ def determine_wildcard_Principal_violations(cfn, policy_path):
 
 
 class IAMPrincipalWildcard(CloudFormationLintRule):
-    """Check ARN for partition agnostics."""
+    """Check for wildcards in IAM Principal statements."""
 
     id = "EPolicyWildcardPrincipal"
     shortdesc = "* on Principal property is a bad idea"

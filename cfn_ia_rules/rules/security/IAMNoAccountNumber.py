@@ -33,7 +33,7 @@ def determine_account_id_in_principal(resource_path, resource):
 
 
 class IAMNoAccountNumber(CloudFormationLintRule):
-    """Check ARN for partition agnostics."""
+    """Check for hard-coded account IDs."""
 
     id = "EIAMAccountIDInPrincipal"
     shortdesc = "Hard-coded account IDs are unacceptable."

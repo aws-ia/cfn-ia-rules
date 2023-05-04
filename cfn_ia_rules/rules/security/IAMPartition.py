@@ -80,7 +80,7 @@ def verify_agnostic_partition(cfn, resource_path, arndata):
 
 
 class IAMPartition(CloudFormationLintRule):
-    """Check ARN for partition agnostics."""
+    """Check for partition-specific ARNs."""
 
     id = "E9007"
     shortdesc = "ARNs should be partition argnostic"

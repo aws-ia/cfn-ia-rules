@@ -26,7 +26,7 @@ LINT_ERROR_MESSAGE = (
 
 
 class ValidateRuleExclusions(CloudFormationLintRule):
-    """Check ARN for partition agnostics."""
+    """Check for EIAM* rules excluded globally."""
 
     id = "EValidateIAMRuleExclusions"
     shortdesc = "* on Resource property is a bad idea"

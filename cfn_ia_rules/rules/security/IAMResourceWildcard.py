@@ -86,7 +86,7 @@ def determine_wildcard_resource_violations(cfn, policy_path):
 
 
 class IAMResourceWildcard(CloudFormationLintRule):
-    """Check ARN for partition agnostics."""
+    """Check for wildcards in IAM Resource statements."""
 
     id = "EIAMPolicyWildcardResource"
     shortdesc = "* on Resource property is a bad idea"

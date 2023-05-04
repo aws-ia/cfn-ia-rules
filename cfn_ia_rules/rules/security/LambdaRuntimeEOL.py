@@ -10,7 +10,7 @@ from cfnlint.rules import RuleMatch
 
 
 class DeprecatedRuntimeEolWarning(DeprecatedRuntime):
-    """Check if EOL Lambda Function Runtimes are used"""
+    """Check for EOL Lambda Function Runtimes."""
 
     id = "W9932"
     shortdesc = "Check if EOL Lambda Function Runtimes are used"

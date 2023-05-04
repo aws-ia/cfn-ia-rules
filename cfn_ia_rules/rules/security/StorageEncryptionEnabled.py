@@ -24,7 +24,7 @@ LINT_ERROR_MESSAGE = "AWS::RDS::DBCluster must have StorageEncryption enabled"
 
 
 class StorageEncryptionEnabled(CloudFormationLintRule):
-    """Verify RDS Clusters have StorageEncryptionEnabled"""
+    """Check for RDS Clusters without encryption at rest."""
 
     id = "ERDSStorageEncryptionEnabled"
     shortdesc = "AWS::RDS::DBCluster should have StorageEncryption enabled"

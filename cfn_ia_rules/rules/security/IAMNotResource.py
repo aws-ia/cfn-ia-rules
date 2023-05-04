@@ -33,7 +33,7 @@ def determine_action_notaction_violation(cfn, policy_path):
 
 
 class IAMNotResource(CloudFormationLintRule):
-    """Check ARN for partition agnostics."""
+    """Check for IAM policies with both Resource and NotResource."""
 
     id = "EIAMPolicyActionNotResource"
     shortdesc = "Combining Action and NotAction is a bad idea."

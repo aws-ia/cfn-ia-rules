@@ -24,7 +24,7 @@ LINT_ERROR_MESSAGE = "IAM policy exclusions must provide exclusion reason eg.: {
 
 
 class IAMExcludeReason(CloudFormationLintRule):
-    """Check that IAM exclusions have a reason specified."""
+    """Check for IAM exclusions without a specified reason."""
 
     id = "EIAMIgnoreJustification"
     shortdesc = "excluding IAM best practices requires justification"
