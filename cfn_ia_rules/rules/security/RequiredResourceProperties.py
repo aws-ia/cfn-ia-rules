@@ -44,8 +44,8 @@ class CFNNAGF32(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 @inherit_doc_string
 class CFNNAGF33(RequiredPropertyEnabledBase, CloudFormationLintRule):
-    resource_type = "AWS::Neptune::DBCluster"
-    property_name = "StorageEncrypted"
+    resource_type = "AWS::ElastiCache::ReplicationGroup"
+    property_name = "TransitEncryptionEnabled"
     property_value = True
     CFN_NAG_RULES = ["F33"]
 
