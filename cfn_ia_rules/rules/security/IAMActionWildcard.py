@@ -17,16 +17,16 @@
 
 
 import json
-from cfnlint.rules import CloudFormationLintRule, RuleMatch
-from ...common import deep_get
 import logging
 import os
+from cfnlint.rules import CloudFormationLintRule, RuleMatch
+from policyuniverse import service_data
+from policyuniverse.expander_minimizer import get_actions_from_statement
+from ...common import deep_get
 
 # policyuniverse messes with the global logger, so need to reset loglevel after it's done.
 logger = logging.getLogger()
 orig_level = logger.level
-from policyuniverse.expander_minimizer import get_actions_from_statement
-from policyuniverse import service_data
 
 logger.setLevel(orig_level)
 
