@@ -29,17 +29,15 @@ CFN_NAG_RULES = [
 
 def determine_action_notaction_violation(cfn, policy_path):
     policy = deep_get(cfn.template, policy_path, [])
-    return all(x in policy.keys() for x in ["Action", "NotResource"])
+    return all(x in policy.keys() for x in ["Resource", "NotResource"])
 
 
 class IAMNotResource(CloudFormationLintRule):
     """Check for IAM policies with both Resource and NotResource."""
 
     id = "EIAMPolicyActionNotResource"
-    shortdesc = "Combining Action and NotAction is a bad idea."
-    description = (
-        "Making sure Action and NotAction are not used in an IAM statement together"
-    )
+    shortdesc = "Combining Resource and NotResource is a bad idea."
+    description = "Making sure Resource and NotResource are not used in an IAM statement together."
     source_url = "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notresource.html"
     tags = ["iam"]
     SEARCH_PROPS = ["Resource"]
