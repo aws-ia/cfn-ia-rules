@@ -20,7 +20,6 @@ import os
 import cfnlint
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from .StackHelper import template_url_to_path
-import traceback
 
 
 class MatchingParameterNotPassed(CloudFormationLintRule):
