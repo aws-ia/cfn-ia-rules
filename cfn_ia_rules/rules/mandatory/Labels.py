@@ -14,6 +14,8 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+
+
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 
 
@@ -37,19 +39,14 @@ class LabelsRule(CloudFormationLintRule):
         ):
             return matches
         if "Metadata" in cfn.template.keys():
-            if (
-                "AWS::CloudFormation::Interface"
-                in cfn.template["Metadata"].keys()
-            ):
+            if "AWS::CloudFormation::Interface" in cfn.template["Metadata"].keys():
                 if (
                     "ParameterLabels"
-                    in cfn.template["Metadata"][
-                        "AWS::CloudFormation::Interface"
-                    ].keys()
+                    in cfn.template["Metadata"]["AWS::CloudFormation::Interface"].keys()
                 ):
-                    for x in cfn.template["Metadata"][
-                        "AWS::CloudFormation::Interface"
-                    ]["ParameterLabels"]:
+                    for x in cfn.template["Metadata"]["AWS::CloudFormation::Interface"][
+                        "ParameterLabels"
+                    ]:
                         labels.append(str(x))
 
         if "Parameters" not in cfn.template.keys():
@@ -57,7 +54,5 @@ class LabelsRule(CloudFormationLintRule):
         else:
             for x in cfn.template["Parameters"]:
                 if str(x) not in labels:
-                    matches.append(
-                        RuleMatch(["Parameters", x], message.format(x))
-                    )
+                    matches.append(RuleMatch(["Parameters", x], message.format(x)))
         return matches
