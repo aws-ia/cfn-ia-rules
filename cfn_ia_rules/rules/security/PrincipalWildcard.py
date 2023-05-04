@@ -40,7 +40,7 @@ class IAMPrincipalWildcard(CloudFormationLintRule):
 
     id = "EPolicyWildcardPrincipal"
     shortdesc = "* on Principal property is a bad idea"
-    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
+    source_url = "https://github.com/aws-quickstart/qs-cfn-lint-rules"
     tags = ["iam"]
     SEARCH_PROPS = ["Principal"]
 

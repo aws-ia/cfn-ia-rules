@@ -40,7 +40,7 @@ class IAMNotResource(CloudFormationLintRule):
     description = (
         "Making sure Action and NotAction are not used in an IAM statement together"
     )
-    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
+    source_url = "https://github.com/aws-quickstart/qs-cfn-lint-rules"
     tags = ["iam"]
     SEARCH_PROPS = ["Resource"]
 

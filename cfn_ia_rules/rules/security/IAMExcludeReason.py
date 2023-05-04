@@ -29,7 +29,7 @@ class IAMExcludeReason(CloudFormationLintRule):
     id = "E-IAM-IGNORE-JUSTIFICATION"
     shortdesc = "excluding IAM best practices requires justification"
     description = "when excluding an IAM policy rule, you must provide a justification"
-    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
+    source_url = "https://github.com/aws-quickstart/qs-cfn-lint-rules"
     tags = ["iam"]
     SEARCH_PROPS = ["cfn-lint"]
 

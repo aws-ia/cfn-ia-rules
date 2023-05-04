@@ -93,7 +93,7 @@ class IAMActionWildcard(CloudFormationLintRule):
     id = "EIAMPolicyActionWildcard"
     shortdesc = "* on Action property is a bad idea"
     description = "wildcard should not be used for Action in IAM policies"
-    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
+    source_url = "https://github.com/aws-quickstart/qs-cfn-lint-rules"
     tags = ["iam"]
     SEARCH_PROPS = ["Action"]
 

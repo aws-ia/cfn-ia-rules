@@ -117,7 +117,7 @@ class StubRuleCommon:
 
 class RequiredPropertyEnabledBase(StubRuleCommon):
     source_url = (
-        "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
+        "https://github.com/aws-quickstart/qs-cfn-lint-rules"
     )
 
     def match(self, cfn):
@@ -139,7 +139,7 @@ class RequiredPropertyEnabledBase(StubRuleCommon):
 
 class ProhibitedResource(StubRuleCommon):
     source_url = (
-        "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
+        "https://github.com/aws-quickstart/qs-cfn-lint-rules"
     )
 
     def __init__(self, *args, **kwargs):

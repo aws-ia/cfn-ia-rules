@@ -29,7 +29,7 @@ class StorageEncryptionEnabled(CloudFormationLintRule):
     id = "ERDSStorageEncryptionEnabled"
     shortdesc = "AWS::RDS::DBCluster should have StorageEncryption enabled"
     description = "AWS::RDS::DBCluster should have StorageEncryption enabled"
-    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
+    source_url = "https://github.com/aws-quickstart/qs-cfn-lint-rules"
     tags = ["rds"]
 
     def match(self, cfn):
