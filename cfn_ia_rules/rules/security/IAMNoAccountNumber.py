@@ -35,7 +35,7 @@ def determine_account_id_in_principal(resource_path, resource):
     return re.search(r"[0-9]{12}", str(resource))
 
 
-class IAMResourceWildcard(CloudFormationLintRule):
+class IAMNoAccountNumber(CloudFormationLintRule):
     """Check ARN for partition agnostics."""
 
     id = "EIAMAccountIDInPrincipal"

@@ -33,7 +33,7 @@ def determine_action_notaction_violation(cfn, policy_path):
     return all(x in policy.keys() for x in ["Action", "NotAction"])
 
 
-class IAMResourceWildcard(CloudFormationLintRule):
+class IAMNotAction(CloudFormationLintRule):
     """Check ARN for partition agnostics."""
 
     id = "EIAMPolicyActionNotAction"
