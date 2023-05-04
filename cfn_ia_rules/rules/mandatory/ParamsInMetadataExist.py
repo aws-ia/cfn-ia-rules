@@ -16,7 +16,6 @@
 """
 
 
-import re
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from cfnlint.rules.metadata.InterfaceParameterExists import (
     InterfaceParameterExists as I,
