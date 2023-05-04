@@ -16,7 +16,6 @@
 """
 
 
-import json
 from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
 

@@ -17,9 +17,6 @@
 
 
 import re
-import six
-import json
-import os
 from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
 from ...common import deep_get

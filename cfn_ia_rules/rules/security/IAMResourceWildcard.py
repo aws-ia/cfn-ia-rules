@@ -16,7 +16,6 @@
 """
 
 
-import re
 import six
 import json
 import os
