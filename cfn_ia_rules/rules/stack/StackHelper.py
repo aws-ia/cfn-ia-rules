@@ -16,10 +16,10 @@
 """
 
 
-import os
-from urllib.parse import urlparse
-from pathlib import Path
 import json
+import os
+from pathlib import Path
+from urllib.parse import urlparse
 
 MAX_DEPTH = 20  # Handle at most 6 levels of nesting in TemplateURL expressions
 # TODO: Allow user to inject this
