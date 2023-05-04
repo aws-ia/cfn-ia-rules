@@ -1,2 +1,2 @@
-from .mandatory import *
-from .security import *
+from .mandatory import *  # noqa
+from .security import *  # noqa

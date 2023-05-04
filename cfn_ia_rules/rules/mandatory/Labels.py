@@ -34,7 +34,7 @@ class LabelsRule(CloudFormationLintRule):
         message = "Parameter {0} is missing ParameterLabel"
         labels = []
 
-        if self.id in cfn.template.get("Metadata", {}).get("QSLint", {}).get(
+        if self.id in cfn.template.get("Metadata", {}).get("Linter", {}).get(
             "Exclusions", []
         ):
             return matches
