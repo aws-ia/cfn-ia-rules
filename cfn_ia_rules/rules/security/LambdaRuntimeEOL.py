@@ -17,9 +17,7 @@ class DeprecatedRuntimeEolWarning(DeprecatedRuntime):
     description = (
         "Check if an EOL Lambda Runtime is specified and give a warning if used. "
     )
-    source_url = (
-        "https://docs.aws.amazon.com/lambda/latest/dg/runtime-support-policy.html"
-    )
+    source_url = "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy"
     tags = ["resources", "lambda", "runtime"]
 
     def check_runtime(self, runtime_value, path):

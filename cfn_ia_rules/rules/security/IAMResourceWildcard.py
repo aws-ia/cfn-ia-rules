@@ -93,7 +93,7 @@ class IAMResourceWildcard(CloudFormationLintRule):
     description = (
         "Making sure wildcard resources are only used where no other option exists"
     )
-    source_url = "https://github.com/aws-quickstart/qs-cfn-lint-rules"
+    source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_permissions_least_privileges.html"
     tags = ["iam"]
     SEARCH_PROPS = ["Resource"]
 

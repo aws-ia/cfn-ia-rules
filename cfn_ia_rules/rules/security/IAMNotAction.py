@@ -37,7 +37,7 @@ class IAMNotAction(CloudFormationLintRule):
     description = (
         "Making sure Action and NotAction are not used in an IAM statement together"
     )
-    source_url = "https://github.com/aws-quickstart/qs-cfn-lint-rules"
+    source_url = "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notaction.html"
     tags = ["iam"]
     SEARCH_PROPS = ["Resource"]
 

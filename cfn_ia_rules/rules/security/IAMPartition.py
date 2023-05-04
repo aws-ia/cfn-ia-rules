@@ -85,7 +85,7 @@ class IAMPartition(CloudFormationLintRule):
     id = "E9007"
     shortdesc = "ARNs should be partition argnostic"
     description = "Making sure all ARNs leverage ${AWS::Partition}"
-    source_url = "https://github.com/aws-quickstart/qs-cfn-lint-rules"
+    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html#cfn-pseudo-param-partition"
     tags = ["iam"]
     SEARCH_PROPS = ["Resource", "ManagedPolicyArns"]
 
