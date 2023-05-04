@@ -16,10 +16,10 @@
 """
 
 
+import os
+import re
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from spellchecker import SpellChecker
-import re
-import os
 
 
 custom_dict_path = os.path.join(
