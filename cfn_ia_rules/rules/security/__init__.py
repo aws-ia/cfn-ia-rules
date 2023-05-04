@@ -4,6 +4,7 @@ from .IAMActionWildcard import IAMActionWildcard
 from .IAMExcludeReason import IAMExcludeReason
 from .IAMNoAccountNumber import IAMNoAccountNumber
 from .IAMNotAction import IAMNotAction
+from .IAMNotResource import IAMNotResource
 from .IAMPartition import IAMPartition
 from .IAMResourceWildcard import IAMResourceWildcard
 from .LambdaRuntimeEOL import DeprecatedRuntimeEolWarning
@@ -57,6 +58,7 @@ __all__ = [
     "IAMExcludeReason",
     "IAMNoAccountNumber",
     "IAMNotAction",
+    "IAMNotResource",
     "IAMPartition",
     "IAMResourceWildcard",
     "DeprecatedRuntimeEolWarning",
