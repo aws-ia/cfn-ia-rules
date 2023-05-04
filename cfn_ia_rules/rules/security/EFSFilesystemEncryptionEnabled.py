@@ -28,7 +28,7 @@ class EFSFilesystemEncryptionEnabled(CloudFormationLintRule):
     shortdesc = "EFS volume missing encryption"
     description = "EFS volume should have server-side encryption enabled"
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_protect_data_rest_encrypt.html"
-    tags = ["EFS", "encryption"]
+    tags = ["efs", "encryption"]
 
     CFN_NAG_RULES = ["F32"]
 
