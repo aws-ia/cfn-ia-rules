@@ -25,7 +25,7 @@ class Descriptions(CloudFormationLintRule):
     id = "W9004"
     shortdesc = "Each parameter should have a description"
     description = "Each parameter should have a Description entry"
-    source_url = "https://github.com/qs_cfn_lint_rules/qs_cfn_lint_rules"
+    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html"
     tags = ["parameters"]
 
     def match(self, cfn):

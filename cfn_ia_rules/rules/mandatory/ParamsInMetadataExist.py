@@ -26,7 +26,7 @@ class ParamsInMetadataExist(CloudFormationLintRule):
     id = "E9009"
     shortdesc = "Parameters referenced in metadata must exist in the template."
     description = "Making sure parameters in metadataexist within the template"
-    source_url = "https://github.com/qs_cfn_lint_rules/qs-cfn-python-lint-rules"
+    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html"
     tags = ["label"]
 
     def match(self, cfn):
