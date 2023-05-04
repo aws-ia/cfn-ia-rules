@@ -17,8 +17,7 @@
 
 
 import json
-from cfnlint.rules import CloudFormationLintRule
-from cfnlint.rules import RuleMatch
+from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from ...common import deep_get
 import logging
 import os

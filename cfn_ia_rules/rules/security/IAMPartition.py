@@ -18,8 +18,7 @@
 
 import re
 import six
-from cfnlint.rules import CloudFormationLintRule
-from cfnlint.rules import RuleMatch
+from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from ...common import deep_get
 
 LINT_ERROR_MESSAGE = (

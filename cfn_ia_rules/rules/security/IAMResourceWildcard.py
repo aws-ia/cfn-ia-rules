@@ -19,8 +19,7 @@
 import six
 import json
 import os
-from cfnlint.rules import CloudFormationLintRule
-from cfnlint.rules import RuleMatch
+from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from ...common import deep_get
 
 LINT_ERROR_MESSAGE = "IAM policy should not allow * resource; This method in this in this policy support granular permissions"

@@ -16,8 +16,7 @@
 """
 
 
-from cfnlint.rules import CloudFormationLintRule
-from cfnlint.rules import RuleMatch
+from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from ...common import search_resources_for_property_value_violations as srfpvv
 
 LINT_ERROR_MESSAGE = "AWS::RDS::DBCluster must have StorageEncryption enabled"
