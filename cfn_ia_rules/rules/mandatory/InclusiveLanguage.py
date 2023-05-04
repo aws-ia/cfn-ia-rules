@@ -38,11 +38,11 @@ def match(s):
 
 
 class InclusiveLanguage(CloudFormationLintRule):
-    """Check for non-inclusive terms"""
+    """Check for non-inclusive terms."""
 
     id = "E9101"
     shortdesc = "Use welcoming and inclusive language"
-    description = "Checks that text is welcoming and inclusive as per Amazon Open Source Code of Conduct https://aws.github.io/code-of-conduct"
+    description = "Checks that text is welcoming and inclusive as per the Amazon Open Source Code of Conduct https://aws.github.io/code-of-conduct."
     source_url = "https://aws.github.io/code-of-conduct"
     tags = ["language"]
 

@@ -21,11 +21,15 @@ from cfnlint.rules.metadata.InterfaceParameterExists import InterfaceParameterEx
 
 
 class ParamsInMetadataExist(CloudFormationLintRule):
-    """Wrapper for W4001 - we need it as an error."""
+    """
+    Checks for parameters in metadata that do not exist in the template.
+
+    Wrapper for W4001. We need it as an error.
+    """
 
     id = "E9009"
     shortdesc = "Parameters referenced in metadata must exist in the template."
-    description = "Making sure parameters in metadataexist within the template"
+    description = "Making sure parameters in metadata exist within the template."
     source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html"
     tags = ["label"]
 

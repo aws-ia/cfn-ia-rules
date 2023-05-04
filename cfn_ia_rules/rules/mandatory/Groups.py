@@ -20,11 +20,11 @@ from cfnlint.rules import CloudFormationLintRule, RuleMatch
 
 
 class Groups(CloudFormationLintRule):
-    """Check Parameter Group Entries Exist"""
+    """Check for parameters not in groups."""
 
     id = "W9003"
     shortdesc = "Each parameter should be in a group"
-    description = "Each parameter should be in one AWS::CloudFormation::Interface ParameterGroups entry"
+    description = "Each parameter should be in one AWS::CloudFormation::Interface ParameterGroups entry."
     source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-interface.html"
     tags = ["parameters"]
 

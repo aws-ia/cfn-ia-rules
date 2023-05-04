@@ -35,11 +35,11 @@ def strip_urls(s):
 
 
 class SentenceCase(CloudFormationLintRule):
-    """Check Parameter descriptions and labels are sentence case"""
+    """Check for parameter descriptions and labels that are not sentence case."""
 
     id = "W9006"
     shortdesc = "Parameter descriptions should be sentence case"
-    description = "Parameter descriptions should be sentence case"
+    description = "Parameter descriptions should be sentence case."
     source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html"
     tags = ["parameters"]
 

@@ -20,7 +20,7 @@ from cfnlint.rules import CloudFormationLintRule, RuleMatch
 
 
 class Casing(CloudFormationLintRule):
-    """Check Name Casing"""
+    """Check for parameter, output, and resource names that are not pascal case."""
 
     id = "W9001"
     shortdesc = "Name casing should be PascalCase"

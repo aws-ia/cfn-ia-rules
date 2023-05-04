@@ -20,7 +20,7 @@ from cfnlint.rules import CloudFormationLintRule, RuleMatch
 
 
 class Descriptions(CloudFormationLintRule):
-    """Check Parameters have descriptions"""
+    """Check for parameters without descriptions."""
 
     id = "W9004"
     shortdesc = "Each parameter should have a description"

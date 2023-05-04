@@ -21,7 +21,11 @@ from cfnlint.rules.parameters.Used import Used
 
 
 class ParamsDefinedAreUsed(CloudFormationLintRule):
-    """Wrapper for W2001 - we need it as an error."""
+    """
+    Checks for unused parameters.
+
+    Wrapper for W2001. We need it as an error.
+    """
 
     id = "E9010"
     shortdesc = "Parameters defined in the template must be used."
