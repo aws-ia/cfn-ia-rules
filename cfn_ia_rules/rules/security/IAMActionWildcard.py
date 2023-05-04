@@ -70,7 +70,7 @@ def is_wild(action):
             if is_wild(a):
                 wild_actions.append(a)
     else:
-        if action.endswith("*") and (not action in DONT_EXPAND):
+        if action.endswith("*") and (action not in DONT_EXPAND):
             wild_actions.append(action)
     return wild_actions
 
