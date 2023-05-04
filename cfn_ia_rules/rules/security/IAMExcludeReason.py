@@ -20,7 +20,7 @@ from cfnlint.rules import CloudFormationLintRule
 from cfnlint.rules import RuleMatch
 
 
-LINT_ERROR_MESSAGE = "IAM policy exclusions must provide exclusion reason eg.: {Metadata: {cfn-lint: {config: {ignore_reasons: {EIAMPolicyActionWildcard: this is the justification for the exclude}}}}"
+LINT_ERROR_MESSAGE = "IAM policy exclusions must provide exclusion reason eg: {{Metadata: {{cfn-lint: {{config: {{ignore_reasons: {{EIAMPolicyActionWildcard: this is the justification for the exclude}}}}}}}}."
 
 
 class IAMExcludeReason(CloudFormationLintRule):
