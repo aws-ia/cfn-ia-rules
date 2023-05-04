@@ -14,6 +14,8 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+
+
 import os
 import cfnlint
 from cfnlint.rules import CloudFormationLintRule  # pylint: disable=E0401
@@ -26,9 +28,7 @@ class ParameterNotInChild(CloudFormationLintRule):
 
     id = "E9904"
     experimental = True
-    shortdesc = (
-        "Parameters in passed to stack resource but not defined in child"
-    )
+    shortdesc = "Parameters in passed to stack resource but not defined in child"
     description = (
         "A parameter defined in template stack resource but not "
         "defined in the child template"
@@ -54,9 +54,7 @@ class ParameterNotInChild(CloudFormationLintRule):
         if isinstance(template_file, list) and len(template_file) == 1:
             template_file = template_file[0]
         elif isinstance(template_file, list):
-            raise ValueError(
-                "expecting single template in a list %s" % template_file
-            )
+            raise ValueError("expecting single template in a list %s" % template_file)
 
         # Load child stack
         # template_parser = MyTemplateParser()
@@ -72,7 +70,6 @@ class ParameterNotInChild(CloudFormationLintRule):
             child_parameters = {}
 
         for parameter in resource_parameters.keys():
-
             # We have a parameter in the parent matching the child
             if parameter not in child_parameters.keys():
                 missing_parameters.append(parameter)
@@ -83,9 +80,7 @@ class ParameterNotInChild(CloudFormationLintRule):
         """Basic Matching"""
         matches = []
         # try:
-        resources = cfn.get_resources(
-            resource_type=["AWS::CloudFormation::Stack"]
-        )
+        resources = cfn.get_resources(resource_type=["AWS::CloudFormation::Stack"])
 
         for r_name, r_values in resources.items():
             properties = r_values.get("Properties")
@@ -104,10 +99,8 @@ class ParameterNotInChild(CloudFormationLintRule):
 
             for e in not_passed_to_child:
                 path = ["Resources", r_name, "Properties", "Parameters", e]
-                message = (
-                    "Parameter {} not present in child template {}".format(
-                        e, r_name
-                    )
+                message = "Parameter {} not present in child template {}".format(
+                    e, r_name
                 )
                 matches.append(RuleMatch(path, message))
         return matches
