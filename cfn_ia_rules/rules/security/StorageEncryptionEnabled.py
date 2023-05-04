@@ -30,7 +30,7 @@ class StorageEncryptionEnabled(CloudFormationLintRule):
     shortdesc = "AWS::RDS::DBCluster should have StorageEncryption enabled"
     description = "AWS::RDS::DBCluster should have StorageEncryption enabled"
     source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_protect_data_rest_encrypt.html"
-    tags = ["rds"]
+    tags = ["rds", "encryption"]
 
     def match(self, cfn):
         """Basic Matching"""
