@@ -14,45 +14,33 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+from cfnlint.rules import CloudFormationLintRule
+from cfnlint.rules import RuleMatch
 
 
-from cfnlint.rules import CloudFormationLintRule, RuleMatch
+class Descriptions(CloudFormationLintRule):
+    """Check Parameters have descriptions"""
 
-
-class Labels(CloudFormationLintRule):
-    """Check for parameters without labels."""
-
-    id = "W9002"
-    shortdesc = "Each parameter should have a label"
-    description = "AWS::CloudFormation::Interface should contain ParameterLabels for each parameter."
-    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-interface.html"
+    id = "W9004"
+    shortdesc = "Each parameter should have a description"
+    description = "Each parameter should have a Description entry"
+    source_url = "https://github.com/qs_cfn_lint_rules/qs_cfn_lint_rules"
     tags = ["parameters"]
 
     def match(self, cfn):
         """Basic Matching"""
         matches = []
-        message = "Parameter {0} is missing ParameterLabel"
-        labels = []
-
-        if self.id in cfn.template.get("Metadata", {}).get("Linter", {}).get(
+        message = "Parameter {0} does not have a Description"
+        if self.id in cfn.template.get("Metadata", {}).get("QSLint", {}).get(
             "Exclusions", []
         ):
             return matches
-        if "Metadata" in cfn.template.keys():
-            if "AWS::CloudFormation::Interface" in cfn.template["Metadata"].keys():
-                if (
-                    "ParameterLabels"
-                    in cfn.template["Metadata"]["AWS::CloudFormation::Interface"].keys()
-                ):
-                    for x in cfn.template["Metadata"]["AWS::CloudFormation::Interface"][
-                        "ParameterLabels"
-                    ]:
-                        labels.append(str(x))
-
         if "Parameters" not in cfn.template.keys():
             return matches
         else:
             for x in cfn.template["Parameters"]:
-                if str(x) not in labels:
-                    matches.append(RuleMatch(["Parameters", x], message.format(x)))
+                if "Description" not in cfn.template["Parameters"][x].keys():
+                    matches.append(
+                        RuleMatch(["Parameters", x], message.format(x))
+                    )
         return matches

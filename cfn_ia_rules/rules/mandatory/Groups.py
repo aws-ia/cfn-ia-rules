@@ -14,45 +14,50 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
+from cfnlint.rules import CloudFormationLintRule
+from cfnlint.rules import RuleMatch
 
 
-from cfnlint.rules import CloudFormationLintRule, RuleMatch
+class Groups(CloudFormationLintRule):
+    """Check Parameter Group Entries Exist"""
 
-
-class Labels(CloudFormationLintRule):
-    """Check for parameters without labels."""
-
-    id = "W9002"
-    shortdesc = "Each parameter should have a label"
-    description = "AWS::CloudFormation::Interface should contain ParameterLabels for each parameter."
-    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-interface.html"
+    id = "W9003"
+    shortdesc = "Each parameter should be in a group"
+    description = "Each parameter should be in one AWS::CloudFormation::Interface ParameterGroups entry"
+    source_url = "https://github.com/qs_cfn_lint_rules/qs_cfn_lint_rules"
     tags = ["parameters"]
 
     def match(self, cfn):
         """Basic Matching"""
         matches = []
-        message = "Parameter {0} is missing ParameterLabel"
+        message = "Parameter {0} is not in a ParameterGroup"
         labels = []
-
-        if self.id in cfn.template.get("Metadata", {}).get("Linter", {}).get(
+        if self.id in cfn.template.get("Metadata", {}).get("QSLint", {}).get(
             "Exclusions", []
         ):
             return matches
         if "Metadata" in cfn.template.keys():
-            if "AWS::CloudFormation::Interface" in cfn.template["Metadata"].keys():
+            if (
+                "AWS::CloudFormation::Interface"
+                in cfn.template["Metadata"].keys()
+            ):
                 if (
-                    "ParameterLabels"
-                    in cfn.template["Metadata"]["AWS::CloudFormation::Interface"].keys()
+                    "ParameterGroups"
+                    in cfn.template["Metadata"][
+                        "AWS::CloudFormation::Interface"
+                    ].keys()
                 ):
-                    for x in cfn.template["Metadata"]["AWS::CloudFormation::Interface"][
-                        "ParameterLabels"
-                    ]:
-                        labels.append(str(x))
+                    for x in cfn.template["Metadata"][
+                        "AWS::CloudFormation::Interface"
+                    ]["ParameterGroups"]:
+                        labels += x["Parameters"]
 
         if "Parameters" not in cfn.template.keys():
             return matches
         else:
             for x in cfn.template["Parameters"]:
                 if str(x) not in labels:
-                    matches.append(RuleMatch(["Parameters", x], message.format(x)))
+                    matches.append(
+                        RuleMatch(["Parameters", x], message.format(x))
+                    )
         return matches
