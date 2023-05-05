@@ -30,7 +30,7 @@ class ParamsDefinedAreUsed(CloudFormationLintRule):
     id = "E9010"
     shortdesc = "Parameters defined in the template must be used."
     description = "Making sure parameters are used."
-    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/mandatory/params_defined_are_used.py"
     tags = ["params"]
 
     def determine_changes(self, cfn):

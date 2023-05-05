@@ -32,7 +32,7 @@ class ValidateRuleExclusions(CloudFormationLintRule):
     description = (
         "Making sure wildcard resources are only used where no other option exists."
     )
-    source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_permissions_least_privileges.html"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/validate_iam_exclusions.py"
     tags = ["iam"]
     SEARCH_PROPS = ["Resource"]
 

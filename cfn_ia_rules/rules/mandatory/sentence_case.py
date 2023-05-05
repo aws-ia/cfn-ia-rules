@@ -43,7 +43,7 @@ class SentenceCase(CloudFormationLintRule):
     id = "W9006"
     shortdesc = "Parameter descriptions should be sentence case"
     description = "Parameter descriptions should be sentence case."
-    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/mandatory/sentence_case.py"
     tags = ["parameters"]
 
     @staticmethod

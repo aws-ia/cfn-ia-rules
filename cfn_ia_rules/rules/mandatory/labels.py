@@ -25,7 +25,7 @@ class Labels(CloudFormationLintRule):
     id = "W9002"
     shortdesc = "Each parameter should have a label"
     description = "AWS::CloudFormation::Interface should contain ParameterLabels for each parameter."
-    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-interface.html"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/mandatory/labels.py"
     tags = ["parameters"]
 
     def match(self, cfn):

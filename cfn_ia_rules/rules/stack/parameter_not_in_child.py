@@ -32,7 +32,7 @@ class ParameterNotInChild(CloudFormationLintRule):
         "A parameter defined in template stack resource but not "
         "defined in the child template."
     )
-    source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/stack/parameter_not_in_child.py"
     tags = ["case"]
 
     @staticmethod

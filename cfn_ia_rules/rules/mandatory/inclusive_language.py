@@ -43,7 +43,7 @@ class InclusiveLanguage(CloudFormationLintRule):
     id = "E9101"
     shortdesc = "Use welcoming and inclusive language"
     description = "Checks that text is welcoming and inclusive as per the Amazon Open Source Code of Conduct https://aws.github.io/code-of-conduct."
-    source_url = "https://aws.github.io/code-of-conduct"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/mandatory/inclusive_language.py"
     tags = ["language"]
 
     def match(self, cfn):

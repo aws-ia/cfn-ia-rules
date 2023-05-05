@@ -25,7 +25,7 @@ class Groups(CloudFormationLintRule):
     id = "W9003"
     shortdesc = "Each parameter should be in a group"
     description = "Each parameter should be in one AWS::CloudFormation::Interface ParameterGroups entry."
-    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-interface.html"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/mandatory/groups.py"
     tags = ["parameters"]
 
     def match(self, cfn):

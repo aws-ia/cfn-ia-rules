@@ -29,7 +29,7 @@ class EBSVolumeEncryption(CloudFormationLintRule):
     id = "EBSVolumeEncryption"
     shortdesc = "EBS volume missing enryption"
     description = "EBS volumes should have server-side encryption enabled."
-    source_url = "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec_protect_data_rest_encrypt.html"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/ebs_volume_encryption.py"
     tags = ["ebs", "encryption"]
 
     CFN_NAG_RULES = ["F1"]

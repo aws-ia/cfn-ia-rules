@@ -36,7 +36,7 @@ class IAMNoAccountNumber(CloudFormationLintRule):
     id = "EIAMAccountIDInPrincipal"
     shortdesc = "Hard-coded account IDs are unacceptable."
     description = "Hard-coded account IDs are unacceptable."
-    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html#cfn-pseudo-param-accountid"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/iam_no_account_number.py"
     tags = ["iam"]
     SEARCH_PROPS = ["Principal"]
 

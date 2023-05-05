@@ -25,7 +25,7 @@ class Casing(CloudFormationLintRule):
     id = "W9001"
     shortdesc = "Name casing should be PascalCase"
     description = "Making sure all names are PascalCase"
-    source_url = "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/mandatory/casing.py"
     tags = ["case"]
 
     def match(self, cfn):

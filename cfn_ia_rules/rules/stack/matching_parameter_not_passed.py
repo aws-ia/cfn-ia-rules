@@ -32,7 +32,7 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
         "A parameter with the same name exists in parent "
         "and child that is not passed to the child."
     )
-    source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/stack/matching_parameter_not_passed.py"
     tags = ["case"]
 
     @staticmethod

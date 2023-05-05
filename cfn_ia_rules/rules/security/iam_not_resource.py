@@ -37,7 +37,7 @@ class IAMNotResource(CloudFormationLintRule):
     id = "EIAMPolicyActionNotResource"
     shortdesc = "Combining Resource and NotResource is a bad idea."
     description = "Making sure Resource and NotResource are not used in an IAM statement together."
-    source_url = "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notresource.html"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/iam_not_resource.py"
     tags = ["iam"]
     SEARCH_PROPS = ["Resource"]
 

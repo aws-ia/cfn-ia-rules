@@ -29,7 +29,7 @@ class DefaultParameter(CloudFormationLintRule):
     experimental = True
     shortdesc = "Parameters missing for nested stack"
     description = "Check to make sure parameters for nested stack are correct."
-    source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/stack/default_parameter.py"
     tags = ["case"]
 
     @staticmethod
