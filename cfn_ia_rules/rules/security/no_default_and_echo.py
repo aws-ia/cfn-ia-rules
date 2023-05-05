@@ -24,7 +24,7 @@ class SimpleADPasswordNoEcho(
 
 
 @inherit_doc_string
-class RDSDBInstanceNoEcho(
+class RDSDBClusterNoEcho(
     ParameterNoEchoDefault, CloudFormationLintRule
 ):  # pylint: disable=C0115
     resource_type = "AWS::RDS::DBCluster"

@@ -14,7 +14,7 @@ from .lambda_runtime_eol import DeprecatedRuntimeEolWarning
 from .no_default_and_echo import (
     RDSDBInstanceNoEcho,
     SimpleADPasswordNoEcho,
-    RDSDBInstanceNoEcho,
+    RDSDBClusterNoEcho,
     RedshiftClusterNoEcho,
     SimpleADPasswordNoEcho,
     DMSEndpointNoEcho,
@@ -67,7 +67,7 @@ __all__ = [
     "DeprecatedRuntimeEolWarning",
     "RDSDBInstanceNoEcho",
     "SimpleADPasswordNoEcho",
-    "RDSDBInstanceNoEcho",
+    "RDSDBClusterNoEcho",
     "RedshiftClusterNoEcho",
     "SimpleADPasswordNoEcho",
     "DMSEndpointNoEcho",
