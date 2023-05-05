@@ -53,7 +53,7 @@ class ParameterNotInChild(CloudFormationLintRule):
         if isinstance(template_file, list) and len(template_file) == 1:
             template_file = template_file[0]
         elif isinstance(template_file, list):
-            raise ValueError("expecting single template in a list %s" % template_file)
+            raise ValueError(f"expecting single template in a list {template_file}")
 
         # Load child stack
         # template_parser = MyTemplateParser()
@@ -98,8 +98,6 @@ class ParameterNotInChild(CloudFormationLintRule):
 
             for e in not_passed_to_child:
                 path = ["Resources", r_name, "Properties", "Parameters", e]
-                message = "Parameter {} not present in child template {}".format(
-                    e, r_name
-                )
+                message = f"Parameter {e} not present in child template {r_name}"
                 matches.append(RuleMatch(path, message))
         return matches

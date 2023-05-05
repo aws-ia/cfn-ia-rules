@@ -47,7 +47,7 @@ class DefaultParameter(CloudFormationLintRule):
         if isinstance(template_file, list) and len(template_file) == 1:
             template_file = template_file[0]
         elif isinstance(template_file, list):
-            raise ValueError("expecting single template in a list %s" % template_file)
+            raise ValueError(f"expecting single template in a list {template_file}")
 
         # Load child stack
         # template_parser = MyTemplateParser()
@@ -101,9 +101,9 @@ class DefaultParameter(CloudFormationLintRule):
             if default_parameters:
                 path = ["Resources", r_name, "Properties", "Parameters"]
                 message = (
-                    "Default parameters used,"
-                    " please be explicit and pass the default value "
-                    "if you wish to use that. {} {}".format(r_name, default_parameters)
+                    "Default parameters used, "
+                    "please be explicit and pass the default value "
+                    f"if you wish to use that. {r_name} {default_parameters}"
                 )
                 matches.append(RuleMatch(path, message))
         return matches

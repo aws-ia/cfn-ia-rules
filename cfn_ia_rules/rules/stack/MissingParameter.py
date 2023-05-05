@@ -47,7 +47,7 @@ class MissingParameter(CloudFormationLintRule):
         if isinstance(template_file, list) and len(template_file) == 1:
             template_file = template_file[0]
         elif isinstance(template_file, list):
-            raise ValueError("expecting single template in a list %s" % template_file)
+            raise ValueError(f"expecting single template in a list {template_file}")
         # Load child stack
         # template_parser = MYTemplateParser()
         # template_parsed = template_parser.my_load_yaml_function(
@@ -104,8 +104,6 @@ class MissingParameter(CloudFormationLintRule):
 
             if missing_parameters:
                 path = ["Resources", r_name, "Properties", "Parameters"]
-                message = "Missing Child Stack parameters. {} {}".format(
-                    r_name, missing_parameters
-                )
+                message = f"Missing Child Stack parameters. {r_name} {missing_parameters}"
                 matches.append(RuleMatch(path, message))
         return matches

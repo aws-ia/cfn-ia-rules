@@ -39,8 +39,8 @@ def rewrite_vars(string, depth=1):
     parts = string.split("${")
     parts = parts[1].split("}")
 
-    rep_text = "${" + parts[0] + "}"
-    rep_with = "##" + parts[0] + "##"
+    rep_text = f"${{{parts[0]}}}"
+    rep_with = f"##{parts[0]}##"
 
     result = string.replace(rep_text, rep_with)
 
@@ -58,8 +58,8 @@ def rewrite_sub_vars(string, depth=1):
     parts = string.split("##")
     parts = parts[1].split("##")
 
-    rep_text = "##" + parts[0] + "##"
-    rep_with = "" + parts[0] + ""
+    rep_text = f"##{parts[0]}##"
+    rep_with = f"{parts[0]}"
 
     result = string.replace(rep_text, rep_with)
 
@@ -75,8 +75,8 @@ def rewrite_sub_vars_with_values(expression, values):
 
     # replace each key we have a value for
     for key in values:
-        rep_text = "##" + key + "##"
-        rep_with = "" + values[key] + ""
+        rep_text = f"##{key}##"
+        rep_with = f"{values[key]}"
 
         result = result.replace(rep_text, rep_with)
 
@@ -85,12 +85,12 @@ def rewrite_sub_vars_with_values(expression, values):
 
 def values_to_dict(values):
     """Rewrite sub vars with actual variable values"""
-    # print("rewrite Values: {}".format(values))
+    # print(f"rewrite Values: {values}")
     # Create dictionary of values
     values_dict_string = values.replace("(", "{")
     values_dict_string = values_dict_string.replace(")", "}")
     values_dict_string = values_dict_string.replace("'", '"')
-    # print("rewrite Values: {}".format(values_dict_string))
+    # print(f"rewrite Values: {values_dict_string}")
     values_dict = json.loads(values_dict_string)
 
     return values_dict
@@ -100,7 +100,7 @@ def evaluate_fn_sub(expression):
     """Return expression with values replaced"""
     results = []
 
-    # print("Fn::Sub: '{}'".format(expression))
+    # print(f"Fn::Sub: '{expression}'")
 
     # Builtins - Fudge some defaults here since we don't have runtime info
     # ${AWS::Region} ${AWS::AccountId}
@@ -109,10 +109,10 @@ def evaluate_fn_sub(expression):
     # Handle Sub of form [ StringToSub, { "key" : "value", "key": "value" }]
     if "[" in expression:
         temp_expression = expression.split("[")[1].split(",")[0]
-        # print("Fn::Sub: (expression) {}".format(temp_expression))
+        # print(f"Fn::Sub: (expression) {temp_expression}")
         values = expression.split("[")[1].split("(")[1].split(")")[0]
-        # print("Fn::Sub: (values) {}".format(values))
-        values = values_to_dict("(" + values + ")")
+        # print(f"Fn::Sub: (values) {values}")
+        values = values_to_dict(f"({values})")
         temp_expression = rewrite_sub_vars_with_values(temp_expression, values)
     else:
         temp_expression = expression.split("': '")[1].split("'")[0]
@@ -121,7 +121,7 @@ def evaluate_fn_sub(expression):
     result = rewrite_sub_vars(temp_expression)
 
     results.append(result)
-    # print("Fn::Sub: '{}'".format(temp_expression))
+    # print(f"Fn::Sub: '{temp_expression}'")
 
     return results
 
@@ -154,8 +154,8 @@ def evaluate_fn_if(expression):
     value_true = expression.split(",")[1].strip()
     value_false = expression.split(",")[2].strip().strip("]")
     # if we don't have '' this can break things
-    results.append("'" + value_true.strip("'") + "'")
-    results.append("'" + value_false.strip("'") + "'")
+    results.append("'{}'".format(value_true.strip("'")))
+    results.append("'{}'".format(value_false.strip("'")))
     # print(results)
     return results
 
@@ -166,12 +166,12 @@ def evaluate_fn_ref(expression):
     results = []
 
     temp = expression.split(": ")[1]
-    # print("Ref: {}".format(temp))
+    # print(f"Ref: {temp}")
     if temp.strip("'") in SUBSTITUTION.keys():
-        # print("Ref: (found) {}".format(temp))
+        # print(f"Ref: (found) {temp}")
         temp = SUBSTITUTION[temp.strip("'")]
-        temp = "'" + temp + "'"
-        # print("Ref: (found) {}".format(temp))
+        temp = f"'{temp}'"
+        # print(f"Ref: (found) {temp}")
 
     results.append(temp)
 
@@ -193,7 +193,7 @@ def evaluate_fn_findinmap(expression):
     first_key = expression.split("[")[1].split("]")[0].split(",")[1].strip()
     final_key = expression.split("[")[1].split("]")[0].split(",")[2].strip()
 
-    result.append("'" + find_in_map_lookup(mappings_map, first_key, final_key) + "'")
+    result.append("'{}'".format(find_in_map_lookup(mappings_map, first_key, final_key)))
 
     return result
 
@@ -233,7 +233,7 @@ def evaluate_expression_controller(expression):
 
     else:
         # This is a NON expression replace the { and } with ( and ) to not recursively evaluate this
-        results.append("(" + expression + ")")
+        results.append(f"({expression})")
 
     return results
 
@@ -243,7 +243,7 @@ def evaluate_string(template_url, depth=0):
     # Recursion bail out
     if depth > MAX_DEPTH:
         raise Exception(
-            "Template URL contains more than {} levels or nesting".format(MAX_DEPTH)
+            f"Template URL contains more than {MAX_DEPTH} levels or nesting"
         )
 
     template_urls = []
@@ -259,13 +259,13 @@ def evaluate_string(template_url, depth=0):
 
         for replacement in replacements:
             template_url_temp = template_url
-            # print("evaluate_string: (before) {}".format(template_url))
-            # print("expression: {}".format(parts[0]))
-            # print("replacement: {}".format(replacement))
+            # print(f"evaluate_string: (before) {template_url}")
+            # print(f"expression: {parts[0]}")
+            # print(f"replacement: {replacement}")
             template_url_temp = template_url_temp.replace(
-                "{" + parts[0] + "}", replacement
+                f"{{{parts[0]}}}", replacement
             )
-            # print("evaluate_string: (after) {}".format(template_url_temp))
+            # print(f"evaluate_string: (after) {template_url_temp}")
 
             evaluated_strings = evaluate_string(template_url_temp, depth=(depth + 1))
             for evaluated_string in evaluated_strings:
@@ -344,7 +344,7 @@ def find_local_child_template(parent_template_path, child_template_path):
 
     # Take the path piece by piece and try in one folder up folder
     project_root = Path(
-        os.path.normpath(os.path.dirname(parent_template_path) + "/../")
+        os.path.normpath(f"{os.path.dirname(parent_template_path)}/../")
     )
     # Get rid of any "//"
     child_template_path_tmp = os.path.normpath(child_template_path)

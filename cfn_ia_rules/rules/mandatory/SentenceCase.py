@@ -66,7 +66,7 @@ class SentenceCase(CloudFormationLintRule):
         description = re.sub(r"\barn:\S+\b", "", description)
         # Remove items from the custom dictionary or the sentence case exclusions from the string
         for pn in custom_dict.union(sentence_case_exclude):
-            description = re.sub(r"\b" + re.escape(pn) + r"\b", "", description)
+            description = re.sub(fr"\b{re.escape(pn)}\b", "", description)
         for sentence in description.split("."):
             word_no = 0
             for pn in custom_dict:
@@ -74,7 +74,7 @@ class SentenceCase(CloudFormationLintRule):
                 if sentence.startswith(pn):
                     word_no += 1
                 sentence = re.sub(
-                    r"\b" + re.escape(pn) + r"\b", "", sentence, flags=re.IGNORECASE
+                    fr"\b{re.escape(pn)}\b", "", sentence, flags=re.IGNORECASE
                 )
             if len(sentence.strip()) > 1:
                 # Check that first letter of first word is UPPER

@@ -54,7 +54,7 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
         if isinstance(template_file, list) and len(template_file) == 1:
             template_file = template_file[0]
         elif isinstance(template_file, list):
-            raise ValueError("expecting single template in a list %s" % template_file)
+            raise ValueError(f"expecting single template in a list {template_file}")
         template_parsed = decode.cfn_yaml.load(template_file)
 
         child_parameters = template_parsed.get("Parameters")
@@ -69,10 +69,7 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
                     if parameter not in str(resource_parameters.get(parameter)):
                         # TODO: test for !Ref or the name of the Parameter in the value
                         missing_parameters.append(
-                            "{} ({})".format(
-                                parameter,
-                                str(resource_parameters.get(parameter)),
-                            )
+                            f"{parameter} ({str(resource_parameters.get(parameter))})"
                         )
 
         if not len(missing_parameters) == 0:
@@ -109,10 +106,8 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
             if not_passed_to_child:
                 path = ["Resources", r_name, "Properties", "Parameters"]
                 message = (
-                    "Parameter defined in Parent with same name as child,"
-                    " however this value is never passed to child. {} {}".format(
-                        r_name, not_passed_to_child
-                    )
+                    "Parameter defined in Parent with same name as child, "
+                    f"however this value is never passed to child. {r_name} {not_passed_to_child}"
                 )
                 matches.append(RuleMatch(path, message))
         return matches
