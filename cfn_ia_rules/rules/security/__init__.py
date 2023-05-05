@@ -1,3 +1,6 @@
+"""Security lint rules"""
+
+
 from .ebs_volume_encryption import EBSVolumeEncryption
 from .efs_file_system_encryption_enabled import EFSFilesystemEncryptionEnabled
 from .iam_action_wildcard import IAMActionWildcard

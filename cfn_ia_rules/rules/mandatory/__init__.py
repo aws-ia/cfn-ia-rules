@@ -1,3 +1,6 @@
+"""Mandatory lint rules"""
+
+
 from .casing import Casing
 from .descriptions import Descriptions
 from .groups import Groups
