@@ -24,20 +24,20 @@ from ...common import deep_get
 
 LINT_ERROR_MESSAGE = "IAM policy should not allow * resource; This method in this in this policy support granular permissions"
 
-custom_dict_path = os.path.join(
+iam_methods_path = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "data/iam_methods.json"
 )
-with open(custom_dict_path) as f:
+with open(iam_methods_path, "r", encoding="utf-8") as f:
     d = f.read()
 resource_only = json.loads(d)
 
 
 def determine_perms():
-    custom_dict_path = os.path.join(
+    granular_permissions_path = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
         "data/granular_permissions.json",
     )
-    with open(custom_dict_path) as f:
+    with open(granular_permissions_path, "r", encoding="utf-8") as f:
         _gp = json.load(f)
     perms = {}
     for method_name, method_data in _gp.items():

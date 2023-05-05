@@ -49,11 +49,11 @@ def determine_perms(service_data):
     return perms
 
 
-custom_dict_path = os.path.join(
+granular_permissions_path = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
     "data/granular_permissions.json",
 )
-with open(custom_dict_path) as f:
+with open(granular_permissions_path, "r", encoding="utf-8") as f:
     d = f.read()
 _gp = json.loads(d)
 GRANULAR_PERMS = determine_perms(_gp)
