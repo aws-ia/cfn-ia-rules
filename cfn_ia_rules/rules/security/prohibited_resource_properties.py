@@ -1,5 +1,5 @@
-from ...common import ProhibitedResourceProperty, inherit_doc_string
 from cfnlint.rules import CloudFormationLintRule
+from ...common import ProhibitedResourceProperty, inherit_doc_string
 
 
 @inherit_doc_string
