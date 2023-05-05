@@ -42,7 +42,7 @@ class RedshiftClusterNoEcho(
 
 
 @inherit_doc_string
-class SimpleADPasswordNoEcho(
+class MicrosoftADPasswordNoEcho(
     ParameterNoEchoDefault, CloudFormationLintRule
 ):  # pylint: disable=C0115
     resource_type = "AWS::DirectoryService::MicrosoftAD"
