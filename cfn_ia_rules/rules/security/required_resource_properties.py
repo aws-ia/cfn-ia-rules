@@ -3,7 +3,9 @@ from ...common import RequiredPropertyEnabledBase, inherit_doc_string
 
 
 @inherit_doc_string
-class CFNNAGF25(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF25(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::ElastiCache::ReplicationGroup"
     property_name = "AtRestEncryptionEnabled"
     property_value = True
@@ -11,7 +13,9 @@ class CFNNAGF25(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 
 @inherit_doc_string
-class CFNNAGF28(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF28(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::Redshift::Cluster"
     property_name = "Encrypted"
     property_value = True
@@ -19,7 +23,9 @@ class CFNNAGF28(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 
 @inherit_doc_string
-class CFNNAGF29p1(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF29p1(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::Workspaces::Workspace"
     property_name = "RootVolumeEncryptionEnabled"
     property_value = True
@@ -27,7 +33,9 @@ class CFNNAGF29p1(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 
 @inherit_doc_string
-class CFNNAGF30(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF30(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::Neptune::DBCluster"
     property_name = "StorageEncrypted"
     property_value = True
@@ -35,7 +43,9 @@ class CFNNAGF30(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 
 @inherit_doc_string
-class CFNNAGF32(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF32(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::EFS::Filesystem"
     property_name = "Encrypted"
     property_value = True
@@ -43,7 +53,9 @@ class CFNNAGF32(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 
 @inherit_doc_string
-class CFNNAGF33(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF33(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::ElastiCache::ReplicationGroup"
     property_name = "TransitEncryptionEnabled"
     property_value = True
@@ -51,7 +63,9 @@ class CFNNAGF33(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 
 @inherit_doc_string
-class CFNNAGF103(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF103(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::KMS::Key"
     property_name = "EnableKeyRotation"
     property_value = True
@@ -59,7 +73,9 @@ class CFNNAGF103(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 
 @inherit_doc_string
-class CFNNAGF22(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF22(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::RDS::DBInstance"
     property_name = "PubliclyAccessible"
     property_value = False
@@ -67,7 +83,9 @@ class CFNNAGF22(RequiredPropertyEnabledBase, CloudFormationLintRule):
 
 
 @inherit_doc_string
-class CFNNAGF78(RequiredPropertyEnabledBase, CloudFormationLintRule):
+class CFNNAGF78(
+    RequiredPropertyEnabledBase, CloudFormationLintRule
+):  # pylint: disable=C0115
     resource_type = "AWS::Cognito::UserPool"
     property_name = "MfaConfiguration"
     property_value = ["OPTIONAL", "ON"]
