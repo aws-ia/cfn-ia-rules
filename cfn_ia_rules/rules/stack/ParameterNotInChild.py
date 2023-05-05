@@ -23,14 +23,14 @@ from .StackHelper import template_url_to_path
 
 
 class ParameterNotInChild(CloudFormationLintRule):
-    """Check Nested Stack Parameters"""
+    """Check for passed parameters that don't exist in child template."""
 
     id = "E9904"
     experimental = True
     shortdesc = "Parameters in passed to stack resource but not defined in child"
     description = (
         "A parameter defined in template stack resource but not "
-        "defined in the child template"
+        "defined in the child template."
     )
     source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
     tags = ["case"]

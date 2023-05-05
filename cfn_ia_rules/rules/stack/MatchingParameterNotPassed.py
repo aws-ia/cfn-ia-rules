@@ -27,10 +27,10 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
 
     id = "E9902"
     experimental = True
-    shortdesc = "Parameters in master not passed to child"
+    shortdesc = "Parameters in parent not passed to child"
     description = (
-        "A parameter with the same name exists in master "
-        "and child. It is not passed to the child"
+        "A parameter with the same name exists in parent "
+        "and child that is not passed to the child."
     )
     source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
     tags = ["case"]
