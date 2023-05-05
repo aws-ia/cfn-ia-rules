@@ -35,7 +35,10 @@ def strip_urls(s):
 
 
 class SentenceCase(CloudFormationLintRule):
-    """Check for parameter descriptions and labels that are not sentence case."""
+    """
+    Check for parameter descriptions and labels that are not sentence case, that
+    have spelling errors, or that do not end in a full stop ('.').
+    """
 
     id = "W9006"
     shortdesc = "Parameter descriptions should be sentence case"
