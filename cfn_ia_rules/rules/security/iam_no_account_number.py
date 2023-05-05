@@ -18,7 +18,6 @@
 
 import re
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
-from ...common import deep_get
 
 LINT_ERROR_MESSAGE = "Hard-coded account IDs are unacceptable."
 CFN_NAG_RULES = [
