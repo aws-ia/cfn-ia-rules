@@ -19,29 +19,22 @@
 import os
 from cfnlint import decode
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
-from .StackHelper import template_url_to_path
+from .stack_helper import template_url_to_path
 
 
-class MatchingParameterNotPassed(CloudFormationLintRule):
-    """Check Nested Stack Parameters"""
+class MissingParameter(CloudFormationLintRule):
+    """Check for presence of parameters required in child template."""
 
-    id = "E9902"
+    id = "E9903"
     experimental = True
-    shortdesc = "Parameters in parent not passed to child"
-    description = (
-        "A parameter with the same name exists in parent "
-        "and child that is not passed to the child."
-    )
+    shortdesc = "Parameters missing for nested stack"
+    description = "Check to make sure parameters for nested stack are correct."
     source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
     tags = ["case"]
 
     @staticmethod
-    def matching_but_not_used_check(
-        current_template_path,
-        parent_parameters,
-        resource_parameters,
-        child_template_url,
-        mappings,
+    def parameter_mismatch(
+        current_template_path, parameters, child_template_url, mappings
     ):
         missing_parameters = []
 
@@ -55,23 +48,34 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
             template_file = template_file[0]
         elif isinstance(template_file, list):
             raise ValueError(f"expecting single template in a list {template_file}")
+        # Load child stack
+        # template_parser = MYTemplateParser()
+        # template_parsed = template_parser.my_load_yaml_function(
+        #     template_file=template_file
+        # )
+
         template_parsed = decode.cfn_yaml.load(template_file)
 
-        child_parameters = template_parsed.get("Parameters")
-        if child_parameters is None:
-            child_parameters = {}
+        # Iterate over Child Stack parameters and
+        # make sure we have all the ones that are not Defaults
+        # TODO: How should we deal with 'Defaults'
+        child_template_parameters = template_parsed.get("Parameters")
+        if child_template_parameters is None:
+            child_template_parameters = {}
 
-        for parameter in child_parameters:
-            # We have a parameter in the parent matching the child
-            if parameter in parent_parameters.keys():
-                if parameter in resource_parameters.keys():
-                    # The Parents value not being passed to the child
-                    if parameter not in str(resource_parameters.get(parameter)):
-                        # TODO: test for !Ref or the name of the Parameter in the value
-                        missing_parameters.append(
-                            f"{parameter} ({str(resource_parameters.get(parameter))})"
-                        )
+        for parameter in child_template_parameters:
+            properties = child_template_parameters.get(parameter)
+            if properties is None:
+                properties = {}
 
+            if "Default" in properties.keys():
+                continue
+
+            if parameter not in parameters.keys():
+                missing_parameters.append(parameter)
+
+            # TODO: Add matching of types if known
+            # TODO: What about TaskCat parameters
         if not len(missing_parameters) == 0:
             return str(missing_parameters)
         else:
@@ -83,10 +87,6 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
         # try:
         resources = cfn.get_resources(resource_type=["AWS::CloudFormation::Stack"])
 
-        parent_parameters = cfn.get_parameters()
-        if type(parent_parameters) is None:
-            parent_parameters = {}
-
         for r_name, r_values in resources.items():
             properties = r_values.get("Properties")
             child_template_url = properties.get("TemplateURL")
@@ -95,19 +95,15 @@ class MatchingParameterNotPassed(CloudFormationLintRule):
             if child_template_parameters is None:
                 child_template_parameters = {}
 
-            not_passed_to_child = self.matching_but_not_used_check(
+            missing_parameters = self.parameter_mismatch(
                 current_template_path=os.path.abspath(cfn.filename),
-                parent_parameters=parent_parameters,
-                resource_parameters=child_template_parameters,
+                parameters=child_template_parameters,
                 child_template_url=child_template_url,
                 mappings=cfn.get_mappings(),
             )
 
-            if not_passed_to_child:
+            if missing_parameters:
                 path = ["Resources", r_name, "Properties", "Parameters"]
-                message = (
-                    "Parameter defined in Parent with same name as child, "
-                    f"however this value is never passed to child. {r_name} {not_passed_to_child}"
-                )
+                message = f"Missing Child Stack parameters. {r_name} {missing_parameters}"
                 matches.append(RuleMatch(path, message))
         return matches

@@ -19,28 +19,22 @@
 import os
 from cfnlint import decode
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
-from .StackHelper import template_url_to_path
+from .stack_helper import template_url_to_path
 
 
-class ParameterNotInChild(CloudFormationLintRule):
-    """Check for passed parameters that don't exist in child template."""
+class DefaultParameter(CloudFormationLintRule):
+    """Check for missing parameters in child template resource."""
 
-    id = "E9904"
+    id = "W9901"
     experimental = True
-    shortdesc = "Parameters in passed to stack resource but not defined in child"
-    description = (
-        "A parameter defined in template stack resource but not "
-        "defined in the child template."
-    )
+    shortdesc = "Parameters missing for nested stack"
+    description = "Check to make sure parameters for nested stack are correct."
     source_url = "https://github.com/qs-cfn-lint-rules/qs_cfn_lint_rules"
     tags = ["case"]
 
     @staticmethod
-    def missing_in_child_check(
-        current_template_path,
-        resource_parameters,
-        child_template_url,
-        mappings,
+    def default_parameter_check(
+        current_template_path, parameters, child_template_url, mappings
     ):
         missing_parameters = []
 
@@ -62,18 +56,26 @@ class ParameterNotInChild(CloudFormationLintRule):
         # )
         template_parsed = decode.cfn_yaml.load(template_file)
 
-        # Iterate over template resource parameters and check they exist
-        # In the child template
-        child_parameters = template_parsed.get("Parameters")
-        if child_parameters is None:
-            child_parameters = {}
+        # Iterate over Child Stack parameters and
+        # make sure we have all the ones that are not Defaults
+        # TODO: How should we deal with 'Defaults'
+        child_template_parameters = template_parsed.get("Parameters")
+        if child_template_parameters is None:
+            child_template_parameters = {}
 
-        for parameter in resource_parameters.keys():
-            # We have a parameter in the parent matching the child
-            if parameter not in child_parameters.keys():
+        for parameter in child_template_parameters:
+            properties = child_template_parameters.get(parameter)
+            if ("Default" in properties.keys()) and (
+                parameter not in parameters.keys()
+            ):
                 missing_parameters.append(parameter)
 
-        return missing_parameters
+            # TODO: Add matching of types if known
+            # TODO: What about TaskCat parameters
+        if not len(missing_parameters) == 0:
+            return str(missing_parameters)
+        else:
+            return None
 
     def match(self, cfn):
         """Basic Matching"""
@@ -89,15 +91,19 @@ class ParameterNotInChild(CloudFormationLintRule):
             if child_template_parameters is None:
                 child_template_parameters = {}
 
-            not_passed_to_child = self.missing_in_child_check(
+            default_parameters = self.default_parameter_check(
                 current_template_path=os.path.abspath(cfn.filename),
-                resource_parameters=child_template_parameters,
+                parameters=child_template_parameters,
                 child_template_url=child_template_url,
                 mappings=cfn.get_mappings(),
             )
 
-            for e in not_passed_to_child:
-                path = ["Resources", r_name, "Properties", "Parameters", e]
-                message = f"Parameter {e} not present in child template {r_name}"
+            if default_parameters:
+                path = ["Resources", r_name, "Properties", "Parameters"]
+                message = (
+                    "Default parameters used, "
+                    "please be explicit and pass the default value "
+                    f"if you wish to use that. {r_name} {default_parameters}"
+                )
                 matches.append(RuleMatch(path, message))
         return matches

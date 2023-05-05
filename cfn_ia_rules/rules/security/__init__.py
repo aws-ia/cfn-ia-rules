@@ -1,14 +1,14 @@
-from .EBSVolumeEncryption import EBSVolumeEncryption
-from .EFSFilesystemEncryptionEnabled import EFSFilesystemEncryptionEnabled
-from .IAMActionWildcard import IAMActionWildcard
-from .IAMExcludeReason import IAMExcludeReason
-from .IAMNoAccountNumber import IAMNoAccountNumber
-from .IAMNotAction import IAMNotAction
-from .IAMNotResource import IAMNotResource
-from .IAMPartition import IAMPartition
-from .IAMResourceWildcard import IAMResourceWildcard
-from .LambdaRuntimeEOL import DeprecatedRuntimeEolWarning
-from .NoDefaultAndEcho import (
+from .ebs_volume_encryption import EBSVolumeEncryption
+from .efs_file_system_encryption_enabled import EFSFilesystemEncryptionEnabled
+from .iam_action_wildcard import IAMActionWildcard
+from .iam_exclude_reason import IAMExcludeReason
+from .iam_no_account_number import IAMNoAccountNumber
+from .iam_not_action import IAMNotAction
+from .iam_not_resource import IAMNotResource
+from .iam_partition import IAMPartition
+from .iam_resource_wildcard import IAMResourceWildcard
+from .lambda_runtime_eol import DeprecatedRuntimeEolWarning
+from .no_default_and_echo import (
     RDSDBInstanceNoEcho,
     SimpleADPasswordNoEcho,
     RDSDBInstanceNoEcho,
@@ -34,10 +34,10 @@ from .NoDefaultAndEcho import (
     ManagedBlockchainMemberNoEcho,
     ASKSkillNoEcho,
 )
-from .PrincipalWildcard import IAMPrincipalWildcard
-from .ProhibitedResourceProperties import WAFV2NoDefaultAllow
-from .ProhibitedResources import NoSimpleDBDomain
-from .RequiredResourceProperties import (
+from .principal_wildcard import IAMPrincipalWildcard
+from .prohibited_resource_properties import WAFV2NoDefaultAllow
+from .prohibited_resources import NoSimpleDBDomain
+from .required_resource_properties import (
     CFNNAGF25,
     CFNNAGF28,
     CFNNAGF29p1,
@@ -48,8 +48,8 @@ from .RequiredResourceProperties import (
     CFNNAGF22,
     CFNNAGF78,
 )
-from .StorageEncryptionEnabled import StorageEncryptionEnabled
-from .ValidateIAMExclusions import ValidateRuleExclusions
+from .storage_encryption_enabled import StorageEncryptionEnabled
+from .validate_iam_exclusions import ValidateRuleExclusions
 
 __all__ = [
     "EBSVolumeEncryption",
