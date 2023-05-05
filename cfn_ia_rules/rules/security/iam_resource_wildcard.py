@@ -16,9 +16,9 @@
 """
 
 
-import six
 import json
 import os
+import six
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from ...common import deep_get
 
