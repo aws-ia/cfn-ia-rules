@@ -32,10 +32,7 @@ class Descriptions(CloudFormationLintRule):
         """Basic Matching"""
         matches = []
         message = "Parameter {0} does not have a Description"
-        if self.id in cfn.template.get("Metadata", {}).get("QSLint", {}).get(
-            "Exclusions", []
-        ):
-            return matches
+
         if "Parameters" not in cfn.template.keys():
             return matches
         else:

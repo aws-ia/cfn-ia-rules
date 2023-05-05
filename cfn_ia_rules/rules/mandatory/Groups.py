@@ -33,10 +33,7 @@ class Groups(CloudFormationLintRule):
         matches = []
         message = "Parameter {0} is not in a ParameterGroup"
         labels = []
-        if self.id in cfn.template.get("Metadata", {}).get("QSLint", {}).get(
-            "Exclusions", []
-        ):
-            return matches
+
         if "Metadata" in cfn.template.keys():
             if "AWS::CloudFormation::Interface" in cfn.template["Metadata"].keys():
                 if (

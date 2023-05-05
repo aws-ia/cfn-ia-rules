@@ -106,14 +106,6 @@ class SentenceCase(CloudFormationLintRule):
         spell_message = "Parameter {0} contains spelling error(s): {1}"
         stop_message = 'Parameter {0} must end in a full stop "."'
 
-        # Ignore templates that are not entry points
-        if not cfn.template.get("Metadata", {}).get("QuickStartDocumentation"):
-            return matches
-
-        if self.id in cfn.template.get("Metadata", {}).get("QSLint", {}).get(
-            "Exclusions", []
-        ):
-            return matches
         if "Parameters" not in cfn.template.keys():
             return matches
         else:
