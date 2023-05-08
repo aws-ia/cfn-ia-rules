@@ -9,6 +9,13 @@ license = "Apache 2.0"
 [tool.poetry.dependencies]
 python = ">=3.8.13,<4"
 cfn-lint = ">=0.74.3,<1"
+policyuniverse = ">=1.5.0,<2"
+pyspellchecker = ">=0.7.2,<1"
+six = ">=1.16.0,<2"
+
+[tool.poetry.dev-dependencies]
+bandit = ">=1.7.5,<2"
+black = ">=23.3.0,<24"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

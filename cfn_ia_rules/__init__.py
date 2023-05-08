@@ -1,3 +1,3 @@
 """
-Mandatory CFN Lint Rules
+AWS Integration & Automation CloudFormation lint rules
 """
