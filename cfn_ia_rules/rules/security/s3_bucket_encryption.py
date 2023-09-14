@@ -17,25 +17,25 @@
 
 
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
-from ...common import search_resources_for_property_value_violations as srfpvv
+from ...common import search_resources_for_properties_present as srfpp
 
 
-LINT_ERROR_MESSAGE = "AWS::S3::Bucket must have versioning enabled."
+LINT_ERROR_MESSAGE = "AWS::S3::Bucket must have encryption enabled."
 
 
-class EBSVolumeEncryption(CloudFormationLintRule):
+class S3BucketEncryptionRule(CloudFormationLintRule):
     """Check for EBS volumes without encryption at rest."""
 
-    id = "ES3VersioningEnabled"
-    shortdesc = "S3 Bucket missing versioning"
-    description = "S3 Buckets should have versioning enabled."
-    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/s3_versioning.py"
-    tags = ["s3", "versioning"]
+    id = "ES3EncryptionEnabled"
+    shortdesc = "S3 Bucket missing encryption"
+    description = "S3 Buckets should have encryption enabled."
+    source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/s3_encryption.py"
+    tags = ["s3", "encryption"]
 
 
     def match(self, cfn):
         """Basic Matching"""
         matches = []
-        for ln in srfpvv(cfn, "AWS::EC2::Volume", "VersioningConfiguration.Status", "Enabled"):
+        for ln in srfpp(cfn, "AWS::EC2::Volume", "BucketEncryption"):
             matches.append(RuleMatch(ln, LINT_ERROR_MESSAGE))
         return matches
