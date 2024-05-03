@@ -188,6 +188,26 @@ class ProhibitedResource(StubRuleCommon):
             results.append(RuleMatch(path, self._lint_error_message))
         return results
 
+class ProhibitedResourcesExcept(ProhibitedResource):
+
+    @property
+    def id(self):
+        return f"EAllowListResourceTypes"
+    @property
+    def shortdesc(self):
+        return f"Only certain resource types are allowed."
+
+    @property
+    def description(self):
+        return f"This resource type is prohibited."
+    def match(self, cfn):
+        """Basic Matching"""
+        results = []
+        for resource_name, resource in cfn.get_resources().items():
+            if resource["Type"] not in self.allowed_resource_types:
+                path = ["Resources", resource_name]
+                results.append(RuleMatch(path, self.shortdesc))
+        return results
 
 class ProhibitedResourceProperty(StubRuleCommon):
     @property
