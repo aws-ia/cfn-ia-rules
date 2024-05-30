@@ -15,7 +15,7 @@ six = ">=1.16.0,<2"
 
 [tool.poetry.dev-dependencies]
 bandit = ">=1.7.5,<2"
-black = ">=23.3.0,<24"
+black = ">=23.3.0,<25"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
