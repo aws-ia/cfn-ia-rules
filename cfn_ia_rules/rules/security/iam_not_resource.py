@@ -20,10 +20,6 @@ from cfnlint.rules import CloudFormationLintRule, RuleMatch
 from ...common import deep_get
 
 LINT_ERROR_MESSAGE = "Combining Action and NotResource is a bad idea."
-CFN_NAG_RULES = [
-    "W21",
-    "W15",
-]
 
 
 def determine_action_notaction_violation(cfn, policy_path):
@@ -40,6 +36,7 @@ class IAMNotResource(CloudFormationLintRule):
     source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/iam_not_resource.py"
     tags = ["iam"]
     SEARCH_PROPS = ["Resource"]
+    CFN_NAG_RULES = ["W21", "W15"] 
 
     def match(self, cfn):
         """Basic Matching"""

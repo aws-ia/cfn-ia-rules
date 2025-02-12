@@ -20,10 +20,7 @@ import re
 from cfnlint.rules import CloudFormationLintRule, RuleMatch
 
 LINT_ERROR_MESSAGE = "Hard-coded account IDs are unacceptable."
-CFN_NAG_RULES = [
-    "W21",
-    "W15",
-]
+
 
 
 def determine_account_id_in_principal(resource_path, resource):
@@ -39,7 +36,7 @@ class IAMNoAccountNumber(CloudFormationLintRule):
     source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/iam_no_account_number.py"
     tags = ["iam"]
     SEARCH_PROPS = ["Principal"]
-
+    CFN_NAG_RULES = ["W21", "W15"] 
     def match(self, cfn):
         """Basic Matching"""
         violation_matches = []

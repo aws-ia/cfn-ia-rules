@@ -21,7 +21,6 @@ from ...common import deep_get
 
 LINT_ERROR_MESSAGE = "Policy should not allow * Principal"
 
-CFN_NAG_RULES = ["F16", "F18", "F20", "F21"]
 
 
 def determine_wildcard_Principal_violations(cfn, policy_path):
@@ -43,6 +42,7 @@ class IAMPrincipalWildcard(CloudFormationLintRule):
     source_url = "https://github.com/aws-ia/cfn-ia-rules/blob/main/cfn_ia_rules/rules/security/principal_wildcard.py"
     tags = ["iam"]
     SEARCH_PROPS = ["Principal"]
+    CFN_NAG_RULES = ["F16", "F18", "F20", "F21"]
 
     def match(self, cfn):
         """Basic Matching"""
